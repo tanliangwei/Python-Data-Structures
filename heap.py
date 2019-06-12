@@ -65,9 +65,36 @@ class Heap:
             self.max_heapify(i)
         return True
 
+    def insert(self, key):
+        self.heap.append(key)
+        self.heap_size+=1
+        current_index = self.heap_size-1
+        while current_index > 0:
+            current_index = int((current_index-1)/2)
+            self.max_heapify(current_index)
+        return True
 
-heap = Heap([4, 10, 23, 12, 14, 90, 21, 100, 1, 204])
+    def get_max(self):
+        if self.heap_size<=0:
+            return None
+        return self.heap[0]
+
+    def pop(self, pos=0):
+        max_element = self.heap[pos]
+        
+
+
+heap = Heap([])
 heap.build_max_heap()
+heap.insert(10)
+print(heap.heap)
+heap.insert(20)
+print(heap.heap)
+heap.insert(30)
+print(heap.heap)
+heap.insert(40)
+print(heap.heap)
+heap.insert(25)
 print(heap.heap)
 
 
