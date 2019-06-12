@@ -18,62 +18,58 @@ class Heap:
         self.heap = list_of_elements
         self.heap_size = len(list_of_elements)
 
-    def get_left_child(self, index):
+    def get_left_child_index(self, index):
         if index >= self.heap_size or (index*2)+1 >= self.heap_size:
             return None
-        return self.heap[(index*2)+1]
+        return (index*2)+1
 
-    def get_right_child(self, index):
+    def get_right_child_index(self, index):
         if index >= self.heap_size or (index*2)+2 >= self.heap_size:
             return None
-        return self.heap[(index*2)+2]
+        return (index*2)+2
 
-    def get_parent(self, index):
+    def get_parent_index(self, index):
         if index >= self.heap_size or (index-1)/2 < 0:
             return None
-        return self.heap[(index-1)/2]
+        return (index-1)/2
 
     def max_heapify(self, index):
         if index >= self.heap_size:
-            return
-        left_child = self.get_left_child(index)
-        right_child = self.get_right_child(index)
-        if left_child is not None and right_child is not None:
-            if left_child >= right_child:
-                max_child = left_child
-                max_index = (index*2)+1
-            else:
-                max_child = right_child
-                max_index = (index * 2) + 2
-            if self.heap[index] >= max_child:
-                return False
-            else:
-                temp = self.heap[index]
-                self.heap[index] = self.heap[max_index]
-                self.heap[max_index] = temp
-                return True
-        if left_child is not None and right_child is None:
-            max_child = left_child
-            max_index = (index * 2) + 1
-            if self.heap[index] >= max_child:
-                return False
-            else:
-                temp = self.heap[index]
-                self.heap[index] = self.heap[max_index]
-                self.heap[max_index] = temp
-                return True
-        if left_child is None and right_child is not None:
-            max_child = right_child
-            max_index = (index * 2) + 2
-            if self.heap[index] >= max_child:
-                return False
-            else:
-                temp = self.heap[index]
-                self.heap[index] = self.heap[max_index]
-                self.heap[max_index] = temp
-                return True
+            return False
+        left_child_index = self.get_left_child_index(index)
+        right_child_index = self.get_right_child_index(index)
+        max_index = index
+        if left_child_index is not None and self.heap[left_child_index] > self.heap[index]:
+            max_index = left_child_index
+        if right_child_index is not None and self.heap[right_child_index] > self.heap[max_index]:
+            max_index = right_child_index
+        if max_index != index:
+            temp = self.heap[index]
+            self.heap[index] = self.heap[max_index]
+            self.heap[max_index] = temp
+            self.max_heapify(max_index)
+            return True
         return False
 
-    
+    def build_max_heap(self):
+        # find the depth of the tree first.
+        depth = 0
+        number_of_nodes = self.heap_size
+        while number_of_nodes > 1:
+            number_of_nodes = number_of_nodes / 2
+            depth += 1
+        largest_node_index = 2**depth - 2
+        if largest_node_index < 0:
+            return False
+        for i in range(largest_node_index, -1, -1):
+            self.max_heapify(i)
+        return True
+
+
+heap = Heap([4, 10, 23, 12, 14, 90, 21, 100, 1, 204])
+heap.build_max_heap()
+print(heap.heap)
+
+
 
 
