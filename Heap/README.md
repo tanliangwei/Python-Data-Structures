@@ -15,12 +15,18 @@ The following table contains the operatations frequently used in a Heap data str
 `build_max_heap()`|![equation](https://latex.codecogs.com/png.latex?O%28n%20%29)|Creates a list with max-heap property with a list of unordered elements.
 
 # Explanation of methods
+
 ## Max Heapify
 This method takes in a target node and corrects a **single violation** of Max-Heap property at that target node. The assumption is that the left and right subtrees of the target node fulfils the Max-Heap property. So, these are the steps taken by Max Heapify.
 
 1. It retrieves the keys of the child nodes and **compare them** to get the node of the child with the **higher key**. We call that child, "**higher-child**".
 2. It compares the key of the target node with the key of the **higher-child**. If **higher-child** is larger, we swap **higher-child** with the target node and continue Max-Heapify at the new position of target node. (*Max-Heap property might still be violated there.*)
 3. Else, we do nothing and return.
+
+Max Heapify will return `True` if at least one swap occured and `False` if no swap occured at all - *no error to begin with*.
+
+## Build Max Heap
+
 
 # TO-DO
 1. Comparison between Heap and BSTs.
