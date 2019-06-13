@@ -79,9 +79,15 @@ class Heap:
             return None
         return self.heap[0]
 
-    def pop(self, pos=0):
-        max_element = self.heap[pos]
-        
+    def pop(self, index=0):
+        if index >= self.heap_size or index<0:
+            return None
+        pop_element = self.heap[index]
+        self.heap[index]=self.heap[self.heap_size-1]
+        self.heap_size-=1
+        self.heap.pop()
+        self.max_heapify(index)
+        return pop_element
 
 
 heap = Heap([])
