@@ -13,3 +13,7 @@ The following table contains the operatations frequently used in a Heap data str
 `pop(index)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns and removes the element at the specified index while maintaining max-heap property. *Default value (if not specified) for index is 0 which points to the largest element in Heap.*
 `get_max()`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Returns the element with the largest key.
 `build_max_heap()`|![equation](https://latex.codecogs.com/png.latex?O%28n%20%29)|Creates a list with max-heap property with a list of unordered elements.
+
+# TO-DO
+1. Comparison between Heap and BSTs.
+2. Implement visualization for Heap and BSTs.
