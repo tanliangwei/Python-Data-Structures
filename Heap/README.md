@@ -23,6 +23,11 @@ This method takes in a target node and corrects a **single violation** of Max-He
 2. It compares the key of the target node with the key of the **higher-child**. If **higher-child** is larger, we swap **higher-child** with the target node and continue Max-Heapify at the new position of target node. (*Max-Heap property might still be violated there.*)
 3. Else, we do nothing and return.
 
+***Edge cases:***
+
+* If there are no children, we can return `False` immediately. There is no error to begin with.
+* If the target node is `None` or if its index is larger than the heap size, we can return `False` immediately. There is no tree and thus no error to begin with.
+
 Max Heapify will return `True` if at least one swap occured and `False` if no swap occured at all - *no error to begin with*.
 
 ## Build Max Heap
