@@ -89,19 +89,19 @@ class Heap:
         self.max_heapify(index)
         return pop_element
 
-
-heap = Heap([])
-heap.build_max_heap()
-heap.insert(10)
-print(heap.heap)
-heap.insert(20)
-print(heap.heap)
-heap.insert(30)
-print(heap.heap)
-heap.insert(40)
-print(heap.heap)
-heap.insert(25)
-print(heap.heap)
+if __name__ == '__main__':
+    heap = Heap([])
+    heap.build_max_heap()
+    heap.insert(10)
+    print(heap.heap)
+    heap.insert(20)
+    print(heap.heap)
+    heap.insert(30)
+    print(heap.heap)
+    heap.insert(40)
+    print(heap.heap)
+    heap.insert(25)
+    print(heap.heap)
 
 
 
