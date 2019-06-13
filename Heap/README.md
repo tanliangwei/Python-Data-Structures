@@ -25,3 +25,4 @@ This method takes in a target node and corrects a **single violation** of Max-He
 # TO-DO
 1. Comparison between Heap and BSTs.
 2. Implement visualization for Heap and BSTs.
+3. Implement Heapsort
