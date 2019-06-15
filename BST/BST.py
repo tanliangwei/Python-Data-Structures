@@ -11,6 +11,12 @@ class Node:
 		self.parent=parent
 		self.key=key
 
+	def __repr__(self):
+		return str(self.key)
+
+	def __str__(self):
+		return str(self.key)
+
 class BST:
 	def __init__(self, root=None):
 		self.root=root
@@ -39,7 +45,7 @@ class BST:
 		if current_node is None:
 			return None
 		if current_node.left is None:
-			return current_node.key
+			return current_node
 		return self.get_min(current_node.left)
 
 	def get_max(self, node=None):
@@ -49,12 +55,23 @@ class BST:
 		if current_node is None:
 			return None
 		if current_node.right is None:
-			return current_node.key
+			return current_node
 		return self.get_max(current_node.right)
 
-	
+	# def find(self, key):
+	# 	pass
 
-	
+	# def get_larger(self, node):
+	# 	if node.right is not None:
+	# 		return self.get_min(node.right)
+	# 	while node.parent is not None:
+	# 		if node.parent.right is node:
+	# 			node = node.parent
+	# 		else:
+	# 			return node.parent
+	# 	return node
+
+
 
 
 
