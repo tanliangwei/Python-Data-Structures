@@ -67,7 +67,7 @@ class BST:
 		if current_node is None:
 			return None
 		if current_node.right is None:
-			return current_node.key
+			return current_node
 		return self.get_max_node(current_node.right)
 
 	def find(self, key):
@@ -106,6 +106,19 @@ class BST:
 				return node.parent
 		return None
 
+	def get_smaller(self, key):
+		node = self.find_node(key)
+		if node is None:
+			return None
+		if node.left is not None:
+			return self.get_max_node(node.left).key
+		while node.parent is not None:
+			if node.parent.left is node:
+				node = node.parent
+			else:
+				return node.parent
+		return None
+
 
 
 
@@ -120,10 +133,10 @@ bst.insert(75)
 bst.insert(175)
 print(bst.find(175))
 print(bst.find(176))
-print(bst.get_larger(10))
-print(bst.get_larger(15))
-print(bst.get_larger(750))
-print(bst.get_larger(100))
+print(bst.get_smaller(10))
+print(bst.get_smaller(15))
+print(bst.get_smaller(750))
+print(bst.get_smaller(100))
 
 
 
