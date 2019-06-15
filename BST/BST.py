@@ -38,17 +38,29 @@ class BST:
 			else:
 				self.insert(key, temp_node.right)
 
-	def get_min(self, node=None):
+	def get_min(self):
+		node = self.get_min_node()
+		if node is None:
+			return None
+		return node.key
+	
+	def get_min_node(self, node=None):
 		current_node=node
 		if current_node is None:
 			current_node=self.root
 		if current_node is None:
 			return None
 		if current_node.left is None:
-			return current_node.key
-		return self.get_min(current_node.left)
+			return current_node
+		return self.get_min_node(current_node.left)
 
-	def get_max(self, node=None):
+	def get_max(self):
+		node = self.get_max_node()
+		if node is None:
+			return None
+		return node.key
+
+	def get_max_node(self, node=None):
 		current_node=node
 		if current_node is None:
 			current_node=self.root
@@ -56,35 +68,43 @@ class BST:
 			return None
 		if current_node.right is None:
 			return current_node.key
-		return self.get_max(current_node.right)
+		return self.get_max_node(current_node.right)
 
-	def find(self, key, node=None):
+	def find(self, key):
+		node = self.find_node(key)
+		if node is None:
+			return None
+		return node.key
+
+	def find_node(self, key, node=None):
 		temp_node=node
 		if node is None:
 			temp_node=self.root
 		if self.root is None:
 			return None
 		if key == temp_node.key:
-			return temp_node.key
+			return temp_node
 		elif key<temp_node.key:
 			if temp_node.left is None:
 				return None
-			return self.find(key, temp_node.left)
+			return self.find_node(key, temp_node.left)
 		elif key>temp_node.key:
 			if temp_node.right is None:
 				return None
-			return self.find(key, temp_node.right)
+			return self.find_node(key, temp_node.right)
 
-
-	# def get_larger(self, node):
-	# 	if node.right is not None:
-	# 		return self.get_min(node.right)
-	# 	while node.parent is not None:
-	# 		if node.parent.right is node:
-	# 			node = node.parent
-	# 		else:
-	# 			return node.parent
-	# 	return node
+	def get_larger(self, key):
+		node = self.find_node(key)
+		if node is None:
+			return None
+		if node.right is not None:
+			return self.get_min_node(node.right).key
+		while node.parent is not None:
+			if node.parent.right is node:
+				node = node.parent
+			else:
+				return node.parent
+		return None
 
 
 
@@ -100,6 +120,10 @@ bst.insert(75)
 bst.insert(175)
 print(bst.find(175))
 print(bst.find(176))
+print(bst.get_larger(10))
+print(bst.get_larger(15))
+print(bst.get_larger(750))
+print(bst.get_larger(100))
 
 
 
