@@ -42,6 +42,18 @@ class BST:
 			return current_node.key
 		return self.get_min(current_node.left)
 
+	def get_max(self, node=None):
+		current_node=node
+		if current_node is None:
+			current_node=self.root
+		if current_node is None:
+			return None
+		if current_node.right is None:
+			return current_node.key
+		return self.get_max(current_node.right)
+
+	
+
 	
 
 
