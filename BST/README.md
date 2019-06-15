@@ -14,10 +14,17 @@ The following table contains the operatations frequently used in a Heap data str
 `get_max()`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Returns the element with the largest key.
 `build_max_heap()`|![equation](https://latex.codecogs.com/png.latex?O%28n%20%29)|Creates a list with max-heap property with a list of unordered elements.
 
+# Explanation of BST operations
 ## Insert
 
-This implementation of Insert takes in a target node and a key. By default, the target node will be the root node. There are a total of three possible cases or scenarios in Insert.
+This implementation of *Insert* takes in a **key as parameter**. There is an optional argument of target node which is by default, the root node. There are a total of three possible cases or scenarios in Insert.
 
 1. **The root is empty**. In this case, we replace the root of the BST with a node intialized with the key.
 2. **The key is smaller or equal to the key of the target node.** In this case, we check if the left child of the node is empty. If it is, we insert it there, else, we call Insert of the left child of the node.
 3. **The key is larger than the key of the target node.** In this case, we check if the right child of the node is empty. If it is, we insert it there, else, we call Insert of the right child of the node.
+
+## Get Min/Max
+Get min finds the **minimum**/**maximum** key in the BST and returns the key.
+
+1. In Get Min, the algorithms keeps **shifting towards the left child** until it can no longer shift left. The key it is pointing to at that point will be the minimum key.
+2. In Get Max, the algorithms keeps **shifting towards the right child** till it can no longer shift right.
