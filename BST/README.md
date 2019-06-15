@@ -8,11 +8,13 @@ The following table contains the operatations frequently used in a Heap data str
 
 |Operation|Description|Time Complexity|
 |----------------|-------------------------------|-----------------------------|
-`Heap(list)`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Constructor for heap.
-`insert(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Inserts *key* into the data structure while maintaining max-heap property.
-`pop(index)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns and removes the element at the specified index while maintaining max-heap property. *Default value (if not specified) for index is 0 which points to the largest element in Heap.*
-`get_max()`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Returns the element with the largest key.
-`build_max_heap()`|![equation](https://latex.codecogs.com/png.latex?O%28n%20%29)|Creates a list with max-heap property with a list of unordered elements.
+`BST()`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Constructor for BST.
+`insert(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Inserts key into the data structure while maintaining BST property.
+`find(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)| Finds and returns the specified key. Returns `None` if key is not found.
+`get_max/min()`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns the element with the largest/smallest key.
+`get_larger/smaller(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Creates a list with max-heap property with a list of unordered elements.
+
+> *It is important to note that even though the Node class exist, the ***user is not expected to touch that class or any object from that class at all***. The interface of all functions of the BST should only involve ***keys***. To use the BST with non-primitive objects, users will need to ***implement their own comparables***.*
 
 # Explanation of BST operations
 ## Insert
