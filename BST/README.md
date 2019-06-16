@@ -66,3 +66,4 @@ It finds, deletes and returns the specified key. If the key does not exist in th
 1. Implement a sort or, in-order, pre-order and post-order traversal
 2. Visualization tool for the BST
 3. Implement a post insertion/deletion function to update a special attribute for keys.
+4. Implement tests to test correctness

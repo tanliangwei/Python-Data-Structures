@@ -21,22 +21,30 @@ class BST:
 	def __init__(self, root=None):
 		self.root=root
 
-	def insert(self, key, node=None):
+	def insert(self, key, node=None, list_of_nodes=[], update=True):
 		temp_node=node
 		if node is None:
 			temp_node=self.root
 		if temp_node is None:
 			self.root=Node(key=key)
+			temp_node=self.root
+		list_of_nodes.append(temp_node)
 		elif key<=temp_node.key:
 			if temp_node.left is None:
 				temp_node.left=Node(key=key, parent=temp_node)
+				list_of_nodes.append(temp_node.left)
+				if update:
+					self.update_attribute(list_of_nodes)
 			else:
-				self.insert(key, temp_node.left)			
+				self.insert(key, temp_node.left, list_of_nodes, update)			
 		elif key>temp_node.key:
 			if temp_node.right is None:
 				temp_node.right=Node(key=key, parent=temp_node)
+				list_of_nodes.append(temp_node.right)
+				if update:
+					self.update_attribute(list_of_nodes)
 			else:
-				self.insert(key, temp_node.right)
+				self.insert(key, temp_node.right, list_of_nodes, update)
 
 	def get_min(self):
 		node = self.get_min_node()
@@ -142,7 +150,7 @@ class BST:
 	def get_larger_than(self, key):
 		if self.find(key) is not None:
 			return self.get_larger(key)
-		self.insert(key)
+		self.insert(key, update=False)
 		node = self.find_node(key)
 		larger = self.get_larger(key)
 		if node is node.parent.left:
@@ -156,7 +164,7 @@ class BST:
 	def get_smaller_than(self, key):
 		if self.find(key) is not None:
 			return self.get_smaller(key)
-		self.insert(key)
+		self.insert(key, update=False)
 		node = self.find_node(key)
 		smaller = self.get_smaller(key)
 		if node is node.parent.left:
@@ -191,23 +199,27 @@ class BST:
 			current_node.parent = None
 		return temp
 
-# Node test 
-
-bst = BST()
-bst.insert(10)
-bst.insert(15)
-bst.insert(100)
-bst.insert(750)
-bst.insert(75)
-bst.insert(175)
-bst.delete(175)
-print(bst.delete(76))
-print(bst.find(100))
-print(bst.get_smaller_than(10))
-print(bst.get_smaller_than(15))
-print(bst.get_smaller_than(750))
-print(bst.get_smaller(100))
+	def update_attribute(self, list_of_nodes):
+		# this guy will receive a list of nodes with index 1 being the root and final index being a leaf
+		pass
 
 
 
-# Insert Test
+
+
+# test.
+if __name__ == '__main__':
+	bst = BST()
+	bst.insert(10)
+	bst.insert(15)
+	bst.insert(100)
+	bst.insert(750)
+	bst.insert(75)
+	bst.insert(175)
+	bst.delete(175)
+	print(bst.delete(76))
+	print(bst.find(100))
+	print(bst.get_smaller_than(10))
+	print(bst.get_smaller_than(15))
+	print(bst.get_smaller_than(750))
+	print(bst.get_smaller(100))
