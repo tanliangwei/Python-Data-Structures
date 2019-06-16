@@ -170,7 +170,7 @@ class BST:
 	def delete(self, key):
 		node = self.find_node(key)
 		if node is None:
-			return
+			return None
 		if node.left is not None:
 			current_node = node.left
 			while current_node.right is not None:
@@ -181,6 +181,7 @@ class BST:
 				current_node = current_node.left
 		else:
 			current_node = node
+		temp = node.key
 		node.key = current_node.key
 		if current_node.parent.right is current_node:
 			current_node.parent.right = current_node.left or current_node.right
@@ -188,6 +189,7 @@ class BST:
 		else:
 			current_node.parent.left = current_node.right or current_node.left
 			current_node.parent = None
+		return temp
 
 # Node test 
 
@@ -199,7 +201,7 @@ bst.insert(750)
 bst.insert(75)
 bst.insert(175)
 bst.delete(175)
-bst.delete(100)
+print(bst.delete(76))
 print(bst.find(100))
 print(bst.get_smaller_than(10))
 print(bst.get_smaller_than(15))
