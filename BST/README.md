@@ -61,3 +61,8 @@ It finds, deletes and returns the specified key. If the key does not exist in th
 1. If a **right subtree exist**, get the minimum key there, swap it with the specified key and delete the minimum element.
 2. Else, if  **a left subtree exist**, we can either get the maximum key of that subtree to **replace** the node to be deleted or we can simply **replace** the key to be deleted with the root of the left subtree.
 3. Else, since there is **no children**, simply delete the key.
+
+# To-Do
+1. Implement a sort or, in-order, pre-order and post-order traversal
+2. Visualization tool for the BST
+3. Implement a post insertion/deletion function to update a special attribute for keys.
