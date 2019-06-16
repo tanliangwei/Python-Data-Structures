@@ -18,9 +18,9 @@ class Node:
 		return str(self.key)
 
 class BST:
-	def __init__(self, root=None, node_type='Node'):
+	def __init__(self, root=None, node_type=Node):
 		self.root=root
-		self.Node=globals()[node_type]
+		self.Node=Node
 
 	def insert(self, key, node=None, list_of_nodes=[], update=True):
 		temp_node=node
