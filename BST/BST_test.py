@@ -26,6 +26,5 @@ class Count_BST(BST):
 
 # test.
 if __name__ == '__main__':
-	print(globals())
 	count_bst = Count_BST()
-	print(count_bst)
+	print(count_bst.Node)

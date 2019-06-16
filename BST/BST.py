@@ -20,7 +20,7 @@ class Node:
 class BST:
 	def __init__(self, root=None, node_type=Node):
 		self.root=root
-		self.Node=Node
+		self.Node=node_type
 
 	def insert(self, key, node=None, list_of_nodes=[], update=True):
 		temp_node=node
