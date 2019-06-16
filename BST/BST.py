@@ -203,12 +203,15 @@ class BST:
 			temp_current_node =temp_current_node.parent
 			list_of_nodes.append(temp_current_node)
 		
-		if current_node.parent.right is current_node:
-			current_node.parent.right = current_node.left or current_node.right
-			current_node.parent = None
+		if current_node.parent is not None:
+			if current_node.parent.right is current_node:
+				current_node.parent.right = current_node.left or current_node.right
+				current_node.parent = None
+			else:
+				current_node.parent.left = current_node.right or current_node.left
+				current_node.parent = None
 		else:
-			current_node.parent.left = current_node.right or current_node.left
-			current_node.parent = None
+			self.root = None
 		if update:
 			self.update_attribute(list_of_nodes, True)
 		return temp

@@ -1,4 +1,5 @@
 from BST import Node, BST
+import random
 
 class Count_Node(Node):
 	def __init__(self, key, left=None, right=None, parent=None):
@@ -28,23 +29,90 @@ class Count_BST(BST):
 
 
 
+def append(x, y, key, index):
+	x.append(key)
+	y.insert(key)
+	if index % 10000==0:
+		print("......")
+
+def get_next_larger_test(x, y, key, index):
+	larger_key = None
+	min_diff = None
+	for i in x:
+		diff = i-key
+		if diff>0 and (min_diff is None or diff<min_diff):
+			min_diff=diff
+			larger_key=i
+	assert larger_key==y.get_larger_than(key)
+	if index % 500==0:
+		print("......")
+
+def get_next_smaller_test(x, y, key, index):
+	smaller_key = None
+	min_diff = None
+	for i in x:
+		diff = key-i
+		if diff>0 and (min_diff is None or diff<min_diff):
+			min_diff=diff
+			smaller_key=i
+	assert smaller_key==y.get_smaller_than(key)
+	if index % 500==0:
+		print("......")
+
+def delete_on_list(x, key):
+	try:
+		x.remove(key)
+		return key
+	except ValueError:
+		return None
+
+def find_on_list(x, key):
+	try:
+		ind = x.index(key)
+		return x[ind]
+	except ValueError:
+		return None
+
+def delete_test(x, y, key, index):
+	assert delete_on_list(x, key) == y.delete(key)
+	try:
+		assert find_on_list(x, key) == y.find(key)
+	except AssertionError:
+		print(find_on_list(x, key))
+		print(y.find(key))
+	if index % 10000==0:
+		print("......")
 
 
 # test.
 if __name__ == '__main__':
-	count_bst = Count_BST()
-	print(count_bst.Node)
-	count_bst = BST()
-	count_bst.insert(10)
-	count_bst.insert(15)
-	count_bst.insert(100)
-	count_bst.insert(750)
-	count_bst.insert(75)
-	count_bst.insert(175)
-	# count_bst.delete(175)
-	print(count_bst.delete(75))
-	print(count_bst.find(100))
-	print(count_bst.get_smaller_than(10))
-	print(count_bst.get_smaller_than(15))
-	print(count_bst.get_smaller_than(750))
-	print(count_bst.get_smaller(100))
+	test_list =[]
+	bst = BST()
+
+	print("===Starting Insertion Test====")
+	for i in range(0,100000):
+		append(test_list, bst, random.randint(1,1000001), i)
+
+	for i in test_list:
+		assert bst.find(i)==i
+
+	print("============Success==========\n")
+
+	print("==Starting Get Max/Min Test===\n")
+	assert max(test_list) == bst.get_max()
+	assert min(test_list) == bst.get_min()
+	print("============Success===========\n")
+
+	print("==Starting Get Larger Than Test==")
+	for i in range(0,1500):
+		get_next_larger_test(test_list, bst, random.randint(1,1000001), i)
+	print("==Starting Get Smaller Than Test==")
+	for i in range(0,1500):
+		get_next_smaller_test(test_list, bst, random.randint(1,1000001), i)
+	print("============Success===========\n")
+
+	print("=====Starting Delete Test========")
+	for i in range(0,10000):
+		delete_test(test_list, bst, random.randint(1,1000001), i)
+
+	print("============Success===========\n")
