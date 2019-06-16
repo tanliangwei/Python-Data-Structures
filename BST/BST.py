@@ -28,8 +28,11 @@ class BST:
 		if temp_node is None:
 			self.root=Node(key=key)
 			temp_node=self.root
-		list_of_nodes.append(temp_node)
+			list_of_nodes.append(temp_node)
+			if update:
+				self.update_attribute(list_of_nodes)
 		elif key<=temp_node.key:
+			list_of_nodes.append(temp_node)
 			if temp_node.left is None:
 				temp_node.left=Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.left)
@@ -38,6 +41,7 @@ class BST:
 			else:
 				self.insert(key, temp_node.left, list_of_nodes, update)			
 		elif key>temp_node.key:
+			list_of_nodes.append(temp_node)
 			if temp_node.right is None:
 				temp_node.right=Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.right)
@@ -175,7 +179,7 @@ class BST:
 			node.parent = None
 		return smaller
 
-	def delete(self, key):
+	def delete(self, key, list_of_nodes=[], update=True):
 		node = self.find_node(key)
 		if node is None:
 			return None
@@ -191,16 +195,27 @@ class BST:
 			current_node = node
 		temp = node.key
 		node.key = current_node.key
+		
+		temp_current_node = current_node
+		list_of_nodes.append(temp_current_node)
+		while temp_current_node.parent is not None:
+			temp_current_node =temp_current_node.parent
+			list_of_nodes.append(temp_current_node)
+		
 		if current_node.parent.right is current_node:
 			current_node.parent.right = current_node.left or current_node.right
 			current_node.parent = None
 		else:
 			current_node.parent.left = current_node.right or current_node.left
 			current_node.parent = None
+		if update:
+			self.update_attribute(list_of_nodes, True)
 		return temp
 
-	def update_attribute(self, list_of_nodes):
+	def update_attribute(self, list_of_nodes, reverse=False):
 		# this guy will receive a list of nodes with index 1 being the root and final index being a leaf
+		# if reverse is true, this guy receives a list of nodes with 1 being leaf and final index being root.
+		print("hello")
 		pass
 
 
@@ -217,7 +232,7 @@ if __name__ == '__main__':
 	bst.insert(75)
 	bst.insert(175)
 	bst.delete(175)
-	print(bst.delete(76))
+	print(bst.delete(75))
 	print(bst.find(100))
 	print(bst.get_smaller_than(10))
 	print(bst.get_smaller_than(15))
