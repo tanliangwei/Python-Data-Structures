@@ -2,7 +2,7 @@
 
 A Binary Search Tree (BST) is a data structure which maintains a set of elements in a way such that the it is **easy and efficient to find an element** given its key. To facilitate this, the BST has a property in which for every node, **all the nodes from the left subtree have keys which are smaller than the key of the node** while **all nodes from the right subtree has keys which are larger than the key of the node.** The elements being maintained must be also be **sortable** and **orderable**.
 
-# BST operations summary TO-DO
+# BST operations summary
 
 The following table contains the operatations frequently used in a Heap data structure. N denotes the number of elements in the heap.
 
@@ -67,3 +67,4 @@ It finds, deletes and returns the specified key. If the key does not exist in th
 # To-Do
 1. Implement a sort or, in-order, pre-order and post-order traversal
 2. Visualization tool for the BST
+3. Arg parser to make package more professional
