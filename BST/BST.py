@@ -216,7 +216,6 @@ class BST:
 	def update_attribute(self, list_of_nodes, reverse=False):
 		# this guy will receive a list of nodes with index 1 being the root and final index being a leaf
 		# if reverse is true, this guy receives a list of nodes with 1 being leaf and final index being root.
-		print("hello")
 		pass
 
 
