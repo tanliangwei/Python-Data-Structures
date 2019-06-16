@@ -31,14 +31,14 @@ class BST:
 			temp_node=self.root
 			list_of_nodes.append(temp_node)
 			if update:
-				self.update_attribute(list_of_nodes)
+				self.update(list_of_nodes, update)
 		elif key<=temp_node.key:
 			list_of_nodes.append(temp_node)
 			if temp_node.left is None:
 				temp_node.left=self.Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.left)
 				if update:
-					self.update_attribute(list_of_nodes)
+					self.update(list_of_nodes, update)
 			else:
 				self.insert(key, temp_node.left, list_of_nodes, update)			
 		elif key>temp_node.key:
@@ -47,7 +47,7 @@ class BST:
 				temp_node.right=self.Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.right)
 				if update:
-					self.update_attribute(list_of_nodes)
+					self.update(list_of_nodes, update)
 			else:
 				self.insert(key, temp_node.right, list_of_nodes, update)
 
@@ -217,10 +217,10 @@ class BST:
 		else:
 			self.root = None
 		if update:
-			self.update_attribute(list_of_nodes, True)
+			self.update(list_of_nodes, True)
 		return temp
 
-	def update_attribute(self, list_of_nodes, reverse=False):
+	def update(self, list_of_nodes, reverse=False):
 		# this guy will receive a list of nodes with index 1 being the root and final index being a leaf
 		# if reverse is true, this guy receives a list of nodes with 1 being leaf and final index being root.
 		pass
