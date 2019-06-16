@@ -119,6 +119,33 @@ class BST:
 				return node.parent
 		return None
 
+	def get_larger_than(self, key):
+		if self.find(key) is not None:
+			return self.get_larger(key)
+		self.insert(key)
+		node = self.find_node(key)
+		larger = self.get_larger(key)
+		if node is node.parent.left:
+			node.parent.left = None
+			node.parent = None
+		else:
+			node.parent.right = None
+			node.parent = None
+		return larger
+
+	def get_smaller_than(self, key):
+		if self.find(key) is not None:
+			return self.get_smaller(key)
+		self.insert(key)
+		node = self.find_node(key)
+		smaller = self.get_smaller(key)
+		if node is node.parent.left:
+			node.parent.left = None
+			node.parent = None
+		else:
+			node.parent.right = None
+			node.parent = None
+		return smaller
 
 
 
@@ -133,10 +160,11 @@ bst.insert(75)
 bst.insert(175)
 print(bst.find(175))
 print(bst.find(176))
-print(bst.get_smaller(10))
-print(bst.get_smaller(15))
-print(bst.get_smaller(750))
-print(bst.get_smaller(100))
+print(bst.get_smaller_than(10))
+print(bst.get_smaller_than(15))
+print(bst.find(15))
+print(bst.get_smaller_than(750))
+print(bst.get_smaller_than(100))
 
 
 
