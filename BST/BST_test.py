@@ -91,8 +91,8 @@ if __name__ == '__main__':
 	bst = BST()
 
 	print("===Starting Insertion Test====")
-	for i in range(0,10000):
-		append(test_list, bst, random.randint(1,1001), i)
+	for i in range(0,100000):
+		append(test_list, bst, random.randint(1,10001), i)
 
 	for i in test_list:
 		assert bst.find(i)==i
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
 	print("=====Starting Delete Test========")
 	for i in range(0,100000):
-		delete_test(test_list, bst, random.randint(1,1001), i)
+		delete_test(test_list, bst, random.randint(1,10001), i)
 		# try:
 		# 	assert bst.count() == len(test_list)
 		# except AssertionError:
