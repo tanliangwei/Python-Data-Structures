@@ -93,7 +93,7 @@ class BST:
 				return None
 			return self.find_node(key, temp_node.right)
 
-	def get_larger(self, key, node=None):
+	def get_larger(self, key, node=None, strict=True):
 		temp_node=node
 		if node is None:
 			temp_node=self.root
@@ -116,7 +116,7 @@ class BST:
 				return self.get_larger(key, select_node.parent)
 		return None
 
-	def get_smaller(self, key, node=None):
+	def get_smaller(self, key, node=None, strict=True):
 		temp_node=node
 		if node is None:
 			temp_node=self.root
@@ -167,27 +167,44 @@ class BST:
 			node.parent = None
 		return smaller
 
-
-
+	def delete(self, key):
+		node = self.find_node(key)
+		if node is None:
+			return
+		if node.left is not None:
+			current_node = node.left
+			while current_node.right is not None:
+				current_node = current_node.right
+		elif node.right is not None:
+			current_node = node.right
+			while current_node.left is not None:
+				current_node = current_node.left
+		else:
+			current_node = node
+		node.key = current_node.key
+		if current_node.parent.right is current_node:
+			current_node.parent.right = current_node.left or current_node.right
+			current_node.parent = None
+		else:
+			current_node.parent.left = current_node.right or current_node.left
+			current_node.parent = None
 
 # Node test 
 
 bst = BST()
 bst.insert(10)
-bst.insert(10)
-bst.insert(15)
 bst.insert(15)
 bst.insert(100)
 bst.insert(750)
 bst.insert(75)
 bst.insert(175)
-print(bst.find(175))
-print(bst.find(176))
+bst.delete(175)
+bst.delete(100)
+print(bst.find(100))
 print(bst.get_smaller_than(10))
 print(bst.get_smaller_than(15))
-# print(bst.find(15))
 print(bst.get_smaller_than(750))
-print(bst.get_smaller_than(100))
+print(bst.get_smaller(100))
 
 
 
