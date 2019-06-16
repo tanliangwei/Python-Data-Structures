@@ -18,15 +18,16 @@ class Node:
 		return str(self.key)
 
 class BST:
-	def __init__(self, root=None):
+	def __init__(self, root=None, node_type='Node'):
 		self.root=root
+		self.Node=globals()[node_type]
 
 	def insert(self, key, node=None, list_of_nodes=[], update=True):
 		temp_node=node
 		if node is None:
 			temp_node=self.root
 		if temp_node is None:
-			self.root=Node(key=key)
+			self.root=self.Node(key=key)
 			temp_node=self.root
 			list_of_nodes.append(temp_node)
 			if update:
@@ -34,7 +35,7 @@ class BST:
 		elif key<=temp_node.key:
 			list_of_nodes.append(temp_node)
 			if temp_node.left is None:
-				temp_node.left=Node(key=key, parent=temp_node)
+				temp_node.left=self.Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.left)
 				if update:
 					self.update_attribute(list_of_nodes)
@@ -43,7 +44,7 @@ class BST:
 		elif key>temp_node.key:
 			list_of_nodes.append(temp_node)
 			if temp_node.right is None:
-				temp_node.right=Node(key=key, parent=temp_node)
+				temp_node.right=self.Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.right)
 				if update:
 					self.update_attribute(list_of_nodes)
@@ -219,9 +220,6 @@ class BST:
 		pass
 
 
-
-
-
 # test.
 if __name__ == '__main__':
 	bst = BST()
@@ -231,7 +229,7 @@ if __name__ == '__main__':
 	bst.insert(750)
 	bst.insert(75)
 	bst.insert(175)
-	bst.delete(175)
+	# bst.delete(175)
 	print(bst.delete(75))
 	print(bst.find(100))
 	print(bst.get_smaller_than(10))

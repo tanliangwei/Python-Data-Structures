@@ -1,33 +1,75 @@
-"""
-This file contains the BST data structure. It consist of 2 classes
-1. Node
-2. BST
-"""
+# A Python program to demonstrate inheritance 
 
-class Node:
-	def __init__(self, key, left=None, right=None, parent=None):
-		self.left=left
-		self.right=right
-		self.parent=parent
-		self.key=key
+class Button(object):
+   html = ""
+   def get_html(self):
+      return self.html
 
-	# def __repr__(self):
-	# 	return str(self.key)
+class Image(Button):
+   html = "<img></img>"
 
-	# def __str__(self):
-	# 	return str(self.key)
+class Input(Button):
+   html = "<input></input>"
+
+class Flash(Button):
+   html = "<obj></obj>"
+
+class ButtonFactory():
+   def create_button(self, typ):
+      targetclass = typ.capitalize()
+      # print(targetclass)
+      print(globals()[targetclass])
+      return globals()[targetclass]()
+
+button_obj = ButtonFactory()
+button = ['image', 'input', 'flash']
+for b in button:
+   print (button_obj.create_button(b).get_html())
+
+# Base or Super class. Note object in bracket. 
+# (Generally, object is made ancestor of all classes) 
+# In Python 3.x "class Person" is 
+# equivalent to "class Person(object)" 
+# example python clas
+# class Base(object): 
+	
+# 	# Constructor 
+# 	def __init__(self, name): 
+# 		self.name = name 
+
+# 	# To get name 
+# 	def getName(self): 
+# 		return self.name 
 
 
-x = []
-a = Node(10)
-b = Node(20)
-c = Node(30)
-x.append(a)
+# # Inherited or Sub class (Note Person in bracket) 
+# class Child(Base): 
+	
+# 	# Constructor 
+# 	def __init__(self, name, age): 
+# 		Base.__init__(self, name) 
+# 		self.age = age 
 
-x.append(b)
+# 	# To get name 
+# 	def getAge(self): 
+# 		return self.age 
 
-x.append(c)
-# x.sort()
-print(x)
+# # Inherited or Sub class (Note Person in bracket) 
+# class GrandChild(Child): 
+	
+# 	# Constructor 
+# 	def __init__(self, name, age, address): 
+# 		Child.__init__(self, name, age) 
+# 		self.address = address 
 
-# Insert Test
+# 	def getAge(self):
+# 		print(super)
+# 		return super().getAge()
+# 	# To get address 
+# 	def getAddress(self): 
+# 		return self.address
+
+
+# # Driver code 
+# g = GrandChild("Geek1", 23, "Noida") 
+# print(g.getName(), g.getAge(), g.getAddress()) 
