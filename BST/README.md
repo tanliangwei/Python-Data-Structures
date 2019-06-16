@@ -12,7 +12,8 @@ The following table contains the operatations frequently used in a Heap data str
 `insert(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Inserts key into the data structure while maintaining BST property.
 `find(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)| Finds and returns the specified key. Returns `None` if key is not found.
 `get_max/min()`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns the element with the largest/smallest key.
-`get_larger/smaller(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Creates a list with max-heap property with a list of unordered elements.
+`get_larger/smaller(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns the first key which is **strictly** smaller/larger than the key specified. Returns `None` if there's nothing **strictly** smaller/larger or **if the key specified key is not in BST**.
+`get_larger/smaller_than(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns the first key which is **strictly** smaller/larger than the key specified. Returns `None` if there's nothing **strictly** smaller/larger.
 
 > *It is important to note that even though the Node class exist, the ***user is not expected to touch that class or any object from that class at all***. The interface of all functions of the BST should only involve ***keys***. To use the BST with non-primitive objects, users will need to ***implement their own comparables***.*
 

@@ -103,7 +103,7 @@ class BST:
 			if node.parent.right is node:
 				node = node.parent
 			else:
-				return node.parent
+				return node.parent.key
 		return None
 
 	def get_smaller(self, key):
@@ -116,7 +116,7 @@ class BST:
 			if node.parent.left is node:
 				node = node.parent
 			else:
-				return node.parent
+				return node.parent.key
 		return None
 
 	def get_larger_than(self, key):
