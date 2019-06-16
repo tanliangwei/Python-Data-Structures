@@ -206,9 +206,13 @@ class BST:
 		if current_node.parent is not None:
 			if current_node.parent.right is current_node:
 				current_node.parent.right = current_node.left or current_node.right
+				if current_node.parent.right is not None:
+					current_node.parent.right.parent = current_node.parent
 				current_node.parent = None
 			else:
 				current_node.parent.left = current_node.right or current_node.left
+				if current_node.parent.left is not None:
+					current_node.parent.left.parent = current_node.parent
 				current_node.parent = None
 		else:
 			self.root = None
@@ -221,8 +225,17 @@ class BST:
 		# if reverse is true, this guy receives a list of nodes with 1 being leaf and final index being root.
 		pass
 
+	def count(self, node=None):
+		current_node = node
+		if node is None:
+			current_node = self.root
+		if self.root is None:
+			return 0
+		left_count = self.count(current_node.left) if current_node.left is not None else 0
+		right_count = self.count(current_node.right) if current_node.right is not None else 0
+		return left_count+right_count+1
 
-# test.
+
 if __name__ == '__main__':
 	bst = BST()
 	bst.insert(10)

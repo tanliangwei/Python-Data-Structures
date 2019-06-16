@@ -80,6 +80,7 @@ def delete_test(x, y, key, index):
 	except AssertionError:
 		print(find_on_list(x, key))
 		print(y.find(key))
+		print(key)
 	if index % 10000==0:
 		print("......")
 
@@ -90,8 +91,8 @@ if __name__ == '__main__':
 	bst = BST()
 
 	print("===Starting Insertion Test====")
-	for i in range(0,100000):
-		append(test_list, bst, random.randint(1,1000001), i)
+	for i in range(0,10000):
+		append(test_list, bst, random.randint(1,1001), i)
 
 	for i in test_list:
 		assert bst.find(i)==i
@@ -104,15 +105,20 @@ if __name__ == '__main__':
 	print("============Success===========\n")
 
 	print("==Starting Get Larger Than Test==")
-	for i in range(0,1500):
+	for i in range(0,150):
 		get_next_larger_test(test_list, bst, random.randint(1,1000001), i)
 	print("==Starting Get Smaller Than Test==")
-	for i in range(0,1500):
+	for i in range(0,150):
 		get_next_smaller_test(test_list, bst, random.randint(1,1000001), i)
 	print("============Success===========\n")
 
 	print("=====Starting Delete Test========")
-	for i in range(0,10000):
-		delete_test(test_list, bst, random.randint(1,1000001), i)
+	for i in range(0,100000):
+		delete_test(test_list, bst, random.randint(1,1001), i)
+		# try:
+		# 	assert bst.count() == len(test_list)
+		# except AssertionError:
+		# 	print("BST count ", bst.count())
+		# 	print("test list count", len(test_list))
 
 	print("============Success===========\n")
