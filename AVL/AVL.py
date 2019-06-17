@@ -24,6 +24,73 @@ class AVL(BST):
 				right_child_height = list_of_nodes[i].right.height if list_of_nodes[i].right is not None else -1
 				list_of_nodes[i].height = max(left_child_height, right_child_height) + 1
 
+	def rotate_right(self, node):
+		if node.left is None:
+			return
+		left_node = node.left
+		if node is self.root:
+			self.root = node_left
+			node_left.parent = None
+		else:
+			node_left.parent = node.parent
+		node.left = node_left.right
+		node_left.right = node
+		node.parent = node_left
+
+	def rotate_left(self, node):
+		if node.right is None:
+			return
+		right_node = node.right
+		if node is self.root:
+			self.root = node_right
+			node_right.parent = None
+		else:
+			node_right.parent = node.parent
+		node.right = node_right.left
+		node_right.left = node
+		node.parent = node_right
+
+	def check_and_rebalance(self, node):
+		# first we check if it is balanced
+		left_child_height = node.left.height if node.left is not None else -1
+		right_child_height = node.right.height if node.right is not None else -1
+		if abs(left_child_height - right_child_height)<=1:
+			return
+		if right_child_height>left_child_height:
+			# right heavy
+			right_child = node.right
+			if right_child is None:
+				return
+			right_child_right_child_height = right_child.right.height if right_child.right is not None else -1
+			right_child_left_child_height = right_child.left.height if right_child.left is not None else -1
+			if (right_child_right_child_height - right_child_left_child_height) >=0 :
+				# right - right heavy
+				self.rotate_left(node)
+				return
+			else:
+				self.rotate_right(right_child)
+				self.rotate_left(node)
+				return 
+		else:
+			# left heavy
+			left_child = node.left
+			if left_child is None:
+				return
+			left_child_right_child_height = left_child.right.height if left_child.right is not None else -1
+			left_child_left_child_height = left_child.left.height if left_child.left is not None else -1
+			if (right_child_left_child_height - right_child_right_child_height) >=0 :
+				# left - left heavy
+				self.rotate_right(node)
+				return
+			else:
+				self.rotate_left(left_child)
+				self.rotate_right(node)
+				return
+
+
+
+
+
 
 
 
