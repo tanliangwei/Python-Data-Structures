@@ -31,14 +31,14 @@ class BST:
 			temp_node=self.root
 			list_of_nodes.append(temp_node)
 			if update:
-				self.update(list_of_nodes, update)
+				self.update(list_of_nodes, False)
 		elif key<=temp_node.key:
 			list_of_nodes.append(temp_node)
 			if temp_node.left is None:
 				temp_node.left=self.Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.left)
 				if update:
-					self.update(list_of_nodes, update)
+					self.update(list_of_nodes, False)
 			else:
 				self.insert(key, temp_node.left, list_of_nodes, update)			
 		elif key>temp_node.key:
@@ -47,7 +47,7 @@ class BST:
 				temp_node.right=self.Node(key=key, parent=temp_node)
 				list_of_nodes.append(temp_node.right)
 				if update:
-					self.update(list_of_nodes, update)
+					self.update(list_of_nodes, False)
 			else:
 				self.insert(key, temp_node.right, list_of_nodes, update)
 

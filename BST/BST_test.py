@@ -88,7 +88,7 @@ def delete_test(x, y, key, index):
 # test.
 if __name__ == '__main__':
 	test_list =[]
-	bst = BST()
+	bst = Count_BST()
 
 	print("===Starting Insertion Test====")
 	for i in range(0,100000):
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 	print("============Success===========\n")
 
 	print("=====Starting Delete Test========")
-	for i in range(0,100000):
+	for i in range(0,1000):
 		delete_test(test_list, bst, random.randint(1,10001), i)
 		# try:
 		# 	assert bst.count() == len(test_list)
