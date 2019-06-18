@@ -157,6 +157,12 @@ def slow_function():
             print("......")
         avl.insert(random.randint(1,10001))
 
+def slow_function():
+    avl = AVL()
+    for i in range(0,1000):
+        if i % 10000==0:
+            print("......")
+        avl.insert(random.randint(1,10001))
 
 # test.
 if __name__ == '__main__':
@@ -190,10 +196,18 @@ if __name__ == '__main__':
 	# print("=====Starting Delete Test========")
 	# for i in range(0,100000):
 	# 	delete_test(test_list, bst, random.randint(1,10001), i)
+
 	# 	# try:
 	# 	# 	assert bst.count() == len(test_list)
 	# 	# except AssertionError:
 	# 	# 	print("BST count ", bst.count())
 	# 	# 	print("test list count", len(test_list))
+
+		# try:
+		# 	assert bst.count() == len(test_list)
+		# except AssertionError:
+		# 	print("BST count ", bst.count())
+		# 	print("test list count", len(test_list))
+
 
 	# print("============Success===========\n")
