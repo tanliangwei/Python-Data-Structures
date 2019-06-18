@@ -185,12 +185,12 @@ def slow_function():
         if i % 10000==0:
             print("......")
         avl.insert(random.randint(1,10001))
+    print(avl.check_avl())
 
 
 if __name__ == '__main__': 
     import cProfile
     cProfile.run('slow_function()')
-    print(avl.check_avl())
 
 # test.
 # if __name__ == '__main__':
@@ -223,17 +223,12 @@ if __name__ == '__main__':
 	# print("=====Starting Delete Test========")
 	# for i in range(0,100000):
 	# 	delete_test(test_list, bst, random.randint(1,10001), i)
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	# 	# try:
 	# 	# 	assert bst.count() == len(test_list)
 	# 	# except AssertionError:
 	# 	# 	print("BST count ", bst.count())
 	# 	# 	print("test list count", len(test_list))
 
-<<<<<<< Updated upstream
 		# try:
 		# 	assert bst.count() == len(test_list)
 		# except AssertionError:
@@ -241,6 +236,4 @@ if __name__ == '__main__':
 		# 	print("test list count", len(test_list))
 
 
-=======
->>>>>>> Stashed changes
 	# print("============Success===========\n")
