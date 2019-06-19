@@ -15,6 +15,7 @@ The following table contains the operatations frequently used in a Heap data str
 `get_larger/smaller(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns the first key which is **strictly** smaller/larger than the key specified. Returns `None` if there's nothing **strictly** smaller/larger or **if the key specified key is not in BST**.
 `get_larger/smaller_than(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns the first key which is **strictly** smaller/larger than the key specified. Returns `None` if there's nothing **strictly** smaller/larger.
 `delete(key)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|Returns and deletes the specified key. Returns `None` if specified key is not found in the BST.
+`update(list_of_nodes)`|![equation](https://latex.codecogs.com/png.latex?O%28%5Clog%20n%20%29)|A function designed for developers to override when they extend on this BST class. Function is called whenever `insert` and `delete` is called. `list_of_nodes` include a list of nodes which are touched during the insertion or deletion. 
 > *It is important to note that even though the Node class exist, the ***user is not expected to touch that class or any object from that class at all***. The interface of all functions of the BST should only involve ***keys***. To use the BST with non-primitive objects, users will need to ***implement their own comparables***.*
 
 # Explanation of BST operations
@@ -65,6 +66,14 @@ It finds, deletes and returns the specified key. If the key does not exist in th
 >Remember to handle edge case for deletion of root.
 
 ## Update
+The `update` function is designed for developers to override, if necessary, when extending the `BST` class. It does nothing in `BST`. The input to this function is a list of nodes, `list_of_nodes` which are traversed during an `insert` or `delete` operation. This function makes it easy for users to alter or write to any special attribute in the node they created. An example use case will be in writing the `AVL`.
+
+```python
+def update(self, list_of_nodes=[], reverse=False):
+	# reverse means that the last node is the leaf and first node, the root, vice versa.
+	for node in list_of_nodes:
+		update_height(node)	
+```
 
 
 # Implementational Notes
@@ -73,7 +82,8 @@ In the `insert(key)` and `delete(key)` functions, an argument, `list_of_node`  i
 
 ```python
 def insert(self, key, list_of_nodes=[], update=True):
-	# contains code regarding appending to the list as well as passing down of this list into insert functions (recursively).
+	# contains code regarding appending to the list as well as 
+	# passing down of this list into insert functions (recursively).
 ```
 The above code will **NOT** achieve the desired effect. The `list_of_nodes` referenced in all insert functions will be referring to the **SAME LIST** and no emptying or reinitializing of the list will happen. List will get infinitely longer than what we expect. To resolve it, we look at the code snippet below.
  
