@@ -21,17 +21,14 @@ class AVL(BST):
 		return node.height
 
 	def update(self, list_of_nodes, reverse=False):
-		# this guy will receive a list of nodes with index 1 being the root and final index being a leaf
-		# if reverse is true, this guy receives a list of nodes with 1 being leaf
-		self.check_and_rebalance(list_of_nodes[len(list_of_nodes)-1])
-		# if reverse:
-		# 	for i in range(len(list_of_nodes)-1, -1, -1):
-		# 		self.update_height(list_of_nodes[i])
-		# 		self.check_and_rebalance(list_of_nodes[i])
-		# else:
-		# 	for i in range(0, len(list_of_nodes)):
-		# 		self.update_height(list_of_nodes[i])
-		# 		self.check_and_rebalance(list_of_nodes[i])
+		if not reverse:
+			for i in range(len(list_of_nodes)-1, -1, -1):
+				self.update_height(list_of_nodes[i])
+				self.check_and_rebalance(list_of_nodes[i])
+		else:
+			for i in range(0, len(list_of_nodes)):
+				self.update_height(list_of_nodes[i])
+				self.check_and_rebalance(list_of_nodes[i])
 
 	def rotate_right(self, node):
 		if node.left is None:
@@ -79,28 +76,40 @@ class AVL(BST):
 
 	def check_and_rebalance(self, node):
 		# first we check if it is balanced
-		while node is not None:
-			self.update_height(node)
-			if abs(self.get_node_height(node.left) - self.get_node_height(node.right))<=1:
-				node = node.parent
-				continue
-			if self.get_node_height(node.right)>self.get_node_height(node.left):
-				# right heavy
-				if (self.get_node_height(node.right.right) - self.get_node_height(node.right.left)) >=0 :
-					# right - right heavy
-					self.rotate_left(node)
-				else:
-					self.rotate_right(node.right)
-					self.rotate_left(node)
+		left_child_height = node.left.height if node.left is not None else -1
+		right_child_height = node.right.height if node.right is not None else -1
+		if abs(left_child_height - right_child_height)<=1:
+			return
+		if right_child_height>left_child_height:
+			# right heavy
+			right_child = node.right
+			if right_child is None:
+				return
+			right_child_right_child_height = right_child.right.height if right_child.right is not None else -1
+			right_child_left_child_height = right_child.left.height if right_child.left is not None else -1
+			if (right_child_right_child_height - right_child_left_child_height) >=0 :
+				# right - right heavy
+				self.rotate_left(node)
+				return
 			else:
-				if (self.get_node_height(node.left.left) - self.get_node_height(node.left.right)) >=0 :
-					# left - left heavy
-					self.rotate_right(node)
-					return
-				else:
-					self.rotate_left(node.left)
-					self.rotate_right(node)
-			node = node.parent
+				self.rotate_right(right_child)
+				self.rotate_left(node)
+				return 
+		else:
+			# left heavy
+			left_child = node.left
+			if left_child is None:
+				return
+			left_child_right_child_height = left_child.right.height if left_child.right is not None else -1
+			left_child_left_child_height = left_child.left.height if left_child.left is not None else -1
+			if (left_child_left_child_height - left_child_right_child_height) >=0 :
+				# left - left heavy
+				self.rotate_right(node)
+				return
+			else:
+				self.rotate_left(left_child)
+				self.rotate_right(node)
+				return
 
 	def check_avl(self):
 		if self.root is None:
@@ -181,7 +190,7 @@ def delete_test(x, y, key, index):
 
 def slow_function():
     avl = AVL()
-    for i in range(0,1000):
+    for i in range(0,100000):
         if i % 10000==0:
             print("......")
         avl.insert(random.randint(1,10001))

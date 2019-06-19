@@ -22,7 +22,9 @@ class BST:
 		self.root=root
 		self.Node=node_type
 
-	def insert(self, key, node=None, list_of_nodes=[], update=True):
+	def insert(self, key, node=None, list_of_nodes=None, update=True):
+		if list_of_nodes is None:
+			list_of_nodes=[]
 		temp_node=node
 		if node is None:
 			temp_node=self.root
@@ -180,7 +182,9 @@ class BST:
 			node.parent = None
 		return smaller
 
-	def delete(self, key, list_of_nodes=[], update=True):
+	def delete(self, key, list_of_nodes=None, update=True):
+		if list_of_nodes is None:
+			list_of_nodes = []
 		node = self.find_node(key)
 		if node is None:
 			return None
