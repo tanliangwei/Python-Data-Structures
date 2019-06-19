@@ -56,7 +56,7 @@ This function corrects a **SINGLE** violation of *AVL Property* at a certain nod
 4. We make the original parent of the node the parent of the right child.
 5. Update the `height`s of both nodes via `update_height`.
 
-> **Implementational Details**: The following pointers have to be adjusted. The *left/right pointer of the parent* of the node. The *parent pointers* of the node and the right child. The *parent pointer* of the left subtree of the right child. The *right pointer* of the node and the *left pointer* of right child. **A total of 6 pointers in total**.
+> **Implementational Details**: The following pointers have to be adjusted. The *1) left/right pointer of the parent* of the node. The *2 & 3) parent pointers* of the node and the right child. The *4) parent pointer* of the left subtree of the right child. The *5) right pointer* of the node and the *6) left pointer* of right child. **A total of 6 pointers in total**.
 
 
 # TO-DO
