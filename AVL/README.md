@@ -31,14 +31,35 @@ The `insert` operation of an `AVL` calls the standard `insert` operation of the 
 The `delete` operation of an `AVL` calls the standard `delete` operation of the `BST` but calls an **overriden** `update` function which rebalances the trees and updates the `height` of the nodes.
 
 ## Update
-The `update` function receives a `list_of_nodes` parameter which contains the list of updated nodes. Update will check and rebalance each node (subtree) starting from the leaf up to the root via `check_and_rebalance` while updating the height via `update_height` simultaneously after every check or rebalance. This is responsible for maintaining the *AVL Property* of the `AVL`  
+The `update` function receives a `list_of_nodes` parameter which contains the list of updated nodes. Update will check and rebalance each node (subtree) starting from the leaf up to the root via `check_and_rebalance` while updating the height via `update_height` simultaneously after every check or rebalance. This is responsible for maintaining the *AVL Property* of the `AVL`.
+
+## Check and Rebalance
+This function corrects a **SINGLE** violation of *AVL Property* at a certain node. *AVL Property* of the subtrees of the node must **NOT** be violated. This function checks and rebalance the imbalances of the subtree at the node. The result is a balanced subtree fulfilling the *AVL Property* There are 4 cases to consider in this function.
+
+1. The violating node is **right heavy**. Its right child fulfills the *AVL Property but is **right heavy or balanced**. We call this **right-right heavy**. To remedy this, we call `rotate_left` on the node itself. 
+2. The violating node is **right heavy**. Its right child fulfills the *AVL Property but is **left heavy**. We call this **right-left heavy**. To remedy this, we call `rotate_right` on the right child, followed by `rotate_left` on the node itself.
+3. For **left-left heavy** violations, we call `rotate_right` on the node itself. 
+4. For **left-right heavy** violations, we call `rotate_left` on the left child, followed by `rotate_right` on the node itself.
+
+> **Right heavy** is, a property used to describe nodes in which their right child has a greater `height` than their left child. Vice versa for **left heavy**. **Balance** suggest equal `height` for both right and left children.
 
 ## Rotate Right/Left
 
-1. If everything is present, cool, as per normal.
-2. If there's no left subtree for x, we can just exit.
-3. If x is the root, we need to update root too and when we update the left node's parent, make it none. since x got no parent too.
-4. If left subtree got no right subtree that's OK, just attach nothing to x's left subtree.
+`rotate_left` involves the movements of the node, it's right child and their subtrees. There is also a change of child for the parent of the node to the right child. Vice versa for left. The following describes the operation of `rotate_left`. Vice versa for `rotate_right`. In the end, we update the `height`s of both nodes.
+
+1. We make the right child the parent of the node.
+2. We connect the left subtree of the right child to the right child of the node.
+3. We make the node the left child of the right child. 
+4. We make the original parent of the node the parent of the right child.
+5. Update the `height`s of both nodes via `update_height`.
+
+> **Implementational Details**: The following pointers have to be adjusted. The *left/right pointer of the parent* of the node. The *parent pointers* of the node and the right child. The *parent pointer* of the left subtree of the right child. The *right pointer* of the node and the *left pointer* of right child. **A total of 6 pointers in total**.
+
+
+# TO-DO
+
+1. Insert some visuals for the rebalancing operations
+2. Maybe try to implemement a range finder in this file.
 
 
 
