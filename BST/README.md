@@ -4,7 +4,7 @@ A Binary Search Tree (BST) is a data structure which maintains a set of elements
 
 # BST operations summary
 
-The following table contains the operatations frequently used in a Heap data structure. N denotes the number of elements in the heap. **Height is denoted by h**.
+The following table contains the operatations frequently used in a BST data structure. `N` denotes the number of elements in the heap and `h` denotes the height of the tree (**longest path from the root to a leaf**).
 
 |Operation|Description|Time Complexity|
 |----------------|-------------------------------|-----------------------------|
