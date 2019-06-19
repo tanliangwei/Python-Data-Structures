@@ -83,42 +83,62 @@ def delete_test(x, y, key, index):
 		print(key)
 	if index % 10000==0:
 		print("......")
+		try:
+			assert bst.count() == len(test_list)
+		except AssertionError:
+			print("BST count ", bst.count())
+			print("test list count", len(test_list))
 
+
+
+def slow_function(avl):
+    for i in range(0,400000):
+        if i % 10000==0:
+            print("......")
+        avl.insert(random.randint(1,10001))
+
+def slow_function2(avl):
+    for i in range(0,400000):
+        if i % 10000==0:
+            print("......")
+        avl.delete(random.randint(1,10001))
+
+
+if __name__ == '__main__': 
+    import cProfile
+    avl = BST()
+    cProfile.run('slow_function(avl)')
+    cProfile.run('slow_function2(avl)')
 
 # test.
-if __name__ == '__main__':
-	test_list =[]
-	bst = Count_BST()
+# if __name__ == '__main__':
+# 	test_list =[]
+# 	bst = Count_BST()
 
-	print("===Starting Insertion Test====")
-	for i in range(0,100000):
-		append(test_list, bst, random.randint(1,10001), i)
+# 	print("===Starting Insertion Test====")
+# 	for i in range(0,100000):
+# 		append(test_list, bst, random.randint(1,10001), i)
 
-	for i in test_list:
-		assert bst.find(i)==i
+# 	for i in test_list:
+# 		assert bst.find(i)==i
 
-	print("============Success==========\n")
+# 	print("============Success==========\n")
 
-	print("==Starting Get Max/Min Test===\n")
-	assert max(test_list) == bst.get_max()
-	assert min(test_list) == bst.get_min()
-	print("============Success===========\n")
+# 	print("==Starting Get Max/Min Test===\n")
+# 	assert max(test_list) == bst.get_max()
+# 	assert min(test_list) == bst.get_min()
+# 	print("============Success===========\n")
 
-	print("==Starting Get Larger Than Test==")
-	for i in range(0,150):
-		get_next_larger_test(test_list, bst, random.randint(1,1000001), i)
-	print("==Starting Get Smaller Than Test==")
-	for i in range(0,150):
-		get_next_smaller_test(test_list, bst, random.randint(1,1000001), i)
-	print("============Success===========\n")
+# 	print("==Starting Get Larger Than Test==")
+# 	for i in range(0,150):
+# 		get_next_larger_test(test_list, bst, random.randint(1,1000001), i)
+# 	print("==Starting Get Smaller Than Test==")
+# 	for i in range(0,150):
+# 		get_next_smaller_test(test_list, bst, random.randint(1,1000001), i)
+# 	print("============Success===========\n")
 
-	print("=====Starting Delete Test========")
-	for i in range(0,1000):
-		delete_test(test_list, bst, random.randint(1,10001), i)
-		# try:
-		# 	assert bst.count() == len(test_list)
-		# except AssertionError:
-		# 	print("BST count ", bst.count())
-		# 	print("test list count", len(test_list))
+# 	print("=====Starting Delete Test========")
+# 	for i in range(0,1000):
+# 		delete_test(test_list, bst, random.randint(1,10001), i)
 
-	print("============Success===========\n")
+# 	print("============Success===========\n")

@@ -64,6 +64,27 @@ It finds, deletes and returns the specified key. If the key does not exist in th
 
 >Remember to handle edge case for deletion of root.
 
+## Update
+
+
+# Implementational Notes
+## Mutable Default Values as an Argument
+In the `insert(key)` and `delete(key)` functions, an argument, `list_of_node`  is assigned a default value of an empty list when it is not assigned. And the desired effect is for it to reinitialize an empty list whenever `insert` or `delete` is called. A snippet of the code is shown below
+
+```python
+def insert(self, key, list_of_nodes=[], update=True):
+	# contains code regarding appending to the list as well as passing down of this list into insert functions (recursively).
+```
+The above code will **NOT** achieve the desired effect. The `list_of_nodes` referenced in all insert functions will be referring to the **SAME LIST** and no emptying or reinitializing of the list will happen. List will get infinitely longer than what we expect. To resolve it, we look at the code snippet below.
+ 
+```python
+def insert(self, key, list_of_nodes=None, update=True):
+	if list_of_nodes is None:
+		list_of_nodes = []
+	# continue with any code inserted previously.
+```
+In the above code snippet, we introduce a **Sentinel** value of None to denote the empty list, and then, manually reinitialize the list when necessary. The above achieves our desired effect.
+
 # To-Do
 1. Implement a sort or, in-order, pre-order and post-order traversal
 2. Visualization tool for the BST

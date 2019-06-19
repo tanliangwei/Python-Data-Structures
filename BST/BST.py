@@ -22,32 +22,37 @@ class BST:
 		self.root=root
 		self.Node=node_type
 
-	def insert(self, key, node=None, list_of_nodes=[], update=True):
+	def insert(self, key, node=None, list_of_nodes=None, update=True):
+
+		if list_of_nodes is None and update:
+			list_of_nodes=[]
 		temp_node=node
 		if node is None:
 			temp_node=self.root
 		if temp_node is None:
 			self.root=self.Node(key=key)
 			temp_node=self.root
-			list_of_nodes.append(temp_node)
 			if update:
-				self.update(list_of_nodes, update)
+				list_of_nodes.append(temp_node)
+				self.update(list_of_nodes, False)
 		elif key<=temp_node.key:
-			list_of_nodes.append(temp_node)
+			if update:
+				list_of_nodes.append(temp_node)
 			if temp_node.left is None:
 				temp_node.left=self.Node(key=key, parent=temp_node)
-				list_of_nodes.append(temp_node.left)
 				if update:
-					self.update(list_of_nodes, update)
+					list_of_nodes.append(temp_node.left)
+					self.update(list_of_nodes, False)
 			else:
 				self.insert(key, temp_node.left, list_of_nodes, update)			
 		elif key>temp_node.key:
-			list_of_nodes.append(temp_node)
+			if update:
+				list_of_nodes.append(temp_node)
 			if temp_node.right is None:
 				temp_node.right=self.Node(key=key, parent=temp_node)
-				list_of_nodes.append(temp_node.right)
 				if update:
-					self.update(list_of_nodes, update)
+					list_of_nodes.append(temp_node.right)
+					self.update(list_of_nodes, False)
 			else:
 				self.insert(key, temp_node.right, list_of_nodes, update)
 
@@ -180,7 +185,9 @@ class BST:
 			node.parent = None
 		return smaller
 
-	def delete(self, key, list_of_nodes=[], update=True):
+	def delete(self, key, list_of_nodes=None, update=True):
+		if list_of_nodes is None and update:
+			list_of_nodes = []
 		node = self.find_node(key)
 		if node is None:
 			return None
@@ -198,10 +205,11 @@ class BST:
 		node.key = current_node.key
 		
 		temp_current_node = current_node
-		list_of_nodes.append(temp_current_node)
-		while temp_current_node.parent is not None:
-			temp_current_node =temp_current_node.parent
+		if update:
 			list_of_nodes.append(temp_current_node)
+			while temp_current_node.parent is not None:
+				temp_current_node =temp_current_node.parent
+				list_of_nodes.append(temp_current_node)
 		
 		if current_node.parent is not None:
 			if current_node.parent.right is current_node:
@@ -235,7 +243,8 @@ class BST:
 		right_count = self.count(current_node.right) if current_node.right is not None else 0
 		return left_count+right_count+1
 
-if __name__ == '__main__': 
+
+if __name__ == '__main__':
 	bst = BST()
 	bst.insert(10)
 	bst.insert(15)
