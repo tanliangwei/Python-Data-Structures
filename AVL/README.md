@@ -3,7 +3,10 @@ An `AVL` Tree (AVL) is a Binary Search Tree (BST) which is self balancing. What 
 
 ![equation](https://latex.codecogs.com/gif.latex?height%3DO%28%5Clog%20n%29)
 
-This ensures that `insert` and `delete` operations can be carried out in `O(height), height = O(logn)` time (*n is the number of elements*) in the worst case **INSTEAD** of `O(height), height = O(n)` time in the worst case in a badly balanced `BST`. The result is a `BST` with a much insertions and deletions which operates in **logarithmic time** in the worst case.
+This ensures that `insert` and `delete` operations can be carried out in `O(logn)` time (*n is the number of elements*) in the worst case instead of `O(n)` time in the worst case in a poorly balanced `BST`. 
+
+The result is a `BST` with insertions and 
+deletions which operates in **logarithmic time** in the worst case.
 
 # AVL operations summary
 An AVL is a BST and it contains the same operations as a BST. The difference is that it has a much better guranteed (worst case) time for most operations. `N` denotes the number of elements in the heap and `h` denotes the height of the tree (**longest path from the root to a leaf**).
