@@ -23,7 +23,8 @@ class BST:
 		self.Node=node_type
 
 	def insert(self, key, node=None, list_of_nodes=None, update=True):
-		if list_of_nodes is None:
+
+		if list_of_nodes is None and update:
 			list_of_nodes=[]
 		temp_node=node
 		if node is None:
@@ -31,24 +32,26 @@ class BST:
 		if temp_node is None:
 			self.root=self.Node(key=key)
 			temp_node=self.root
-			list_of_nodes.append(temp_node)
 			if update:
+				list_of_nodes.append(temp_node)
 				self.update(list_of_nodes, False)
 		elif key<=temp_node.key:
-			list_of_nodes.append(temp_node)
+			if update:
+				list_of_nodes.append(temp_node)
 			if temp_node.left is None:
 				temp_node.left=self.Node(key=key, parent=temp_node)
-				list_of_nodes.append(temp_node.left)
 				if update:
+					list_of_nodes.append(temp_node.left)
 					self.update(list_of_nodes, False)
 			else:
 				self.insert(key, temp_node.left, list_of_nodes, update)			
 		elif key>temp_node.key:
-			list_of_nodes.append(temp_node)
+			if update:
+				list_of_nodes.append(temp_node)
 			if temp_node.right is None:
 				temp_node.right=self.Node(key=key, parent=temp_node)
-				list_of_nodes.append(temp_node.right)
 				if update:
+					list_of_nodes.append(temp_node.right)
 					self.update(list_of_nodes, False)
 			else:
 				self.insert(key, temp_node.right, list_of_nodes, update)
@@ -183,7 +186,7 @@ class BST:
 		return smaller
 
 	def delete(self, key, list_of_nodes=None, update=True):
-		if list_of_nodes is None:
+		if list_of_nodes is None and update:
 			list_of_nodes = []
 		node = self.find_node(key)
 		if node is None:
@@ -202,10 +205,11 @@ class BST:
 		node.key = current_node.key
 		
 		temp_current_node = current_node
-		list_of_nodes.append(temp_current_node)
-		while temp_current_node.parent is not None:
-			temp_current_node =temp_current_node.parent
+		if update:
 			list_of_nodes.append(temp_current_node)
+			while temp_current_node.parent is not None:
+				temp_current_node =temp_current_node.parent
+				list_of_nodes.append(temp_current_node)
 		
 		if current_node.parent is not None:
 			if current_node.parent.right is current_node:
