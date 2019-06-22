@@ -58,6 +58,8 @@ This function corrects a **SINGLE** violation of *AVL Property* at a certain nod
 
 > **Implementational Details**: The following pointers have to be adjusted. The *1) left/right pointer of the parent* of the node. The *2 & 3) parent pointers* of the node and the right child. The *4) parent pointer* of the left subtree of the right child. The *5) right pointer* of the node and the *6) left pointer* of right child. **A total of 6 pointers in total**.
 
+##
+
 
 # TO-DO
 

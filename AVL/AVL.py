@@ -132,117 +132,105 @@ class AVL(BST):
 
 
 
-
-def append(x, y, key, index):
-	x.append(key)
-	y.insert(key)
-	if index % 1000==0:
-		print("......")
-
-def get_next_larger_test(x, y, key, index):
-	larger_key = None
-	min_diff = None
-	for i in x:
-		diff = i-key
-		if diff>0 and (min_diff is None or diff<min_diff):
-			min_diff=diff
-			larger_key=i
-	assert larger_key==y.get_larger_than(key)
-	if index % 500==0:
-		print("......")
-
-def get_next_smaller_test(x, y, key, index):
-	smaller_key = None
-	min_diff = None
-	for i in x:
-		diff = key-i
-		if diff>0 and (min_diff is None or diff<min_diff):
-			min_diff=diff
-			smaller_key=i
-	assert smaller_key==y.get_smaller_than(key)
-	if index % 500==0:
-		print("......")
-
-def delete_on_list(x, key):
-	try:
-		x.remove(key)
-		return key
-	except ValueError:
-		return None
-
-def find_on_list(x, key):
-	try:
-		ind = x.index(key)
-		return x[ind]
-	except ValueError:
-		return None
-
-def delete_test(x, y, key, index):
-	assert delete_on_list(x, key) == y.delete(key)
-	try:
-		assert find_on_list(x, key) == y.find(key)
-	except AssertionError:
-		print(find_on_list(x, key))
-		print(y.find(key))
-		print(key)
-	if index % 10000==0:
-		print("......")
-
-def slow_function():
-    avl = AVL()
-    for i in range(0,100000):
-        if i % 10000==0:
-            print("......")
-        avl.insert(random.randint(1,10001))
-    print(avl.check_avl())
-
-
 if __name__ == '__main__': 
-    import cProfile
-    cProfile.run('slow_function()')
+	def append(x, y, key, index):
+		x.append(key)
+		y.insert(key)
+		if index % 1000==0:
+			print("......")
 
-# test.
-# if __name__ == '__main__':
-	# test_list =[]
-	# bst = AVL()
+	def get_next_larger_test(x, y, key, index):
+		larger_key = None
+		min_diff = None
+		for i in x:
+			diff = i-key
+			if diff>0 and (min_diff is None or diff<min_diff):
+				min_diff=diff
+				larger_key=i
+		assert larger_key==y.get_larger_than(key)
+		if index % 500==0:
+			print("......")
 
-	# print("===Starting Insertion Test====")
-	# for i in range(0,100000):
-	# for i in range(0,10000):
-	# 	append(test_list, bst, random.randint(1,10001), i)
+	def get_next_smaller_test(x, y, key, index):
+		smaller_key = None
+		min_diff = None
+		for i in x:
+			diff = key-i
+			if diff>0 and (min_diff is None or diff<min_diff):
+				min_diff=diff
+				smaller_key=i
+		assert smaller_key==y.get_smaller_than(key)
+		if index % 500==0:
+			print("......")
 
-	# for i in test_list:
-	# 	assert bst.find(i)==i
+	def delete_on_list(x, key):
+		try:
+			x.remove(key)
+			return key
+		except ValueError:
+			return None
 
-	# print("============Success==========\n")
+	def find_on_list(x, key):
+		try:
+			ind = x.index(key)
+			return x[ind]
+		except ValueError:
+			return None
 
-	# print("==Starting Get Max/Min Test===\n")
-	# assert max(test_list) == bst.get_max()
-	# assert min(test_list) == bst.get_min()
-	# print("============Success===========\n")
+	def delete_test(x, y, key, index):
+		assert delete_on_list(x, key) == y.delete(key)
+		try:
+			assert find_on_list(x, key) == y.find(key)
+		except AssertionError:
+			print(find_on_list(x, key))
+			print(y.find(key))
+			print(key)
+		if index % 10000==0:
+			print("......")
 
-	# print("==Starting Get Larger Than Test==")
-	# for i in range(0,150):
-	# 	get_next_larger_test(test_list, bst, random.randint(1,1000001), i)
-	# print("==Starting Get Smaller Than Test==")
-	# for i in range(0,150):
-	# 	get_next_smaller_test(test_list, bst, random.randint(1,1000001), i)
-	# print("============Success===========\n")
+	def slow_function():
+	    avl = AVL()
+	    for i in range(0,100000):
+	        if i % 10000==0:
+	            print("......")
+	        avl.insert(random.randint(1,10001))
+	    print(avl.check_avl())
 
-	# print("=====Starting Delete Test========")
-	# for i in range(0,100000):
-	# 	delete_test(test_list, bst, random.randint(1,10001), i)
-	# 	# try:
-	# 	# 	assert bst.count() == len(test_list)
-	# 	# except AssertionError:
-	# 	# 	print("BST count ", bst.count())
-	# 	# 	print("test list count", len(test_list))
+	# import cProfile
+	# cProfile.run('slow_function()')
+	test_list =[]
+	bst = AVL()
 
-		# try:
-		# 	assert bst.count() == len(test_list)
-		# except AssertionError:
-		# 	print("BST count ", bst.count())
-		# 	print("test list count", len(test_list))
+	print("===Starting Insertion Test====")
+	for i in range(0,10000):
+		append(test_list, bst, random.randint(1,10001), i)
+
+	for i in test_list:
+		assert bst.find(i)==i
+
+	print("============Success==========\n")
+
+	print("==Starting Get Max/Min Test===\n")
+	assert max(test_list) == bst.get_max()
+	assert min(test_list) == bst.get_min()
+	print("============Success===========\n")
+
+	print("==Starting Get Larger Than Test==")
+	for i in range(0,150):
+		get_next_larger_test(test_list, bst, random.randint(1,1000001), i)
+	print("==Starting Get Smaller Than Test==")
+	for i in range(0,150):
+		get_next_smaller_test(test_list, bst, random.randint(1,1000001), i)
+	print("============Success===========\n")
+
+	print("=====Starting Delete Test========")
+	for i in range(0,100000):
+		delete_test(test_list, bst, random.randint(1,10001), i)
+		try:
+			assert bst.count() == len(test_list)
+		except AssertionError:
+			print("BST count ", bst.count())
+			print("test list count", len(test_list))
 
 
-	# print("============Success===========\n")
+	print("============Success===========\n")
