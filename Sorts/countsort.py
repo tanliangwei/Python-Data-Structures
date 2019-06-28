@@ -6,10 +6,10 @@ def default_key(number):
 	return number
 
 
-def countsort(arr, integer_range=None, reverse=False, default_key_func=default_key):
+def countsort(arr, integer_range=None, reverse=False, key_function=default_key):
 	if arr is None:
 		return None
-	m = list(map(default_key_func, arr))
+	m = list(map(key_function, arr))
 	if integer_range is None:
 		integer_range = (min(m), max(m))
 	lower_bound, upper_bound = integer_range
@@ -18,7 +18,7 @@ def countsort(arr, integer_range=None, reverse=False, default_key_func=default_k
 	for i in range(0, m):
 		sort_array.append([])
 	for element in arr:
-		key = default_key_func(element)
+		key = key_function(element)
 		sort_array[key - lower_bound].append(element)
 	index = 0
 	for num_list in sort_array:
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 	unsorted_array = random_int_list_generator(10, integer_range)
 	unsorted_array_2 = unsorted_array.copy()
 	print(unsorted_array)
-	countsort(unsorted_array_2, default_key_func=first_digit)
+	countsort(unsorted_array_2, key_function=first_digit)
 	print(unsorted_array_2)
 	# python_sort(unsorted_array)
 	# for i in range(0,len(unsorted_array_2)):
