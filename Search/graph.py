@@ -8,7 +8,7 @@ class DummyObject:
 		self.x = x
 		self.y = y
 
-class Graph:
+class DictGraph:
 	def __init__(self, directed=True):
 		self.graph = {}
 		self.directed = directed
@@ -44,6 +44,11 @@ class Graph:
 			for e in E:
 				self.add_undirected_edge(e)
 		return self.graph
+
+	def get_list_of_children(self, obj):
+		assert obj in self.graph.keys(), "vertice is not in the set V"
+		return self.graph[obj]
+	
 
 
 
