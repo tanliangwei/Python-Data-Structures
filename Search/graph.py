@@ -1,6 +1,13 @@
 """
-This File contains the Graph class
+This module contains the Graph class
 Users can use this class to make Graphs
+This data structure contains 5 functions on the interface.
+1. Add vertice - Basically adding a vertice into the graph
+2 & 3. Add directed/undirected edge - adding edges into graph
+4. Make graph - makes a graph give 2 sets, V and E
+5. get set of children - getting a set of children for the object specified
+
+** take note that we only deal with the objects at the interface. We in no way touch the internal objects such as Vertex.
 """
 
 class DictGraph:
@@ -102,6 +109,9 @@ class ObjectGraph:
 	def get_set_of_children(self, obj):
 		assert obj in self.V, "vertice is not in the set V"
 		return self.V[obj].set_of_children
+
+
+
 
 
 OG = ObjectGraph(True)
