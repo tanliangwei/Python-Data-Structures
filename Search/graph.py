@@ -105,8 +105,20 @@ class ObjectGraph:
 
 
 OG = ObjectGraph(True)
-OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3)])
-print(OG.get_set_of_children(1))
+OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3), (3,4), (3,6)])
+visited = set()
+
+queue = [1]
+while len(queue)>0:
+	current_obj = queue.pop()
+	if current_obj not in visited:
+		visited.add(current_obj)
+		for e in OG.get_set_of_children(current_obj):
+			if e not in visited:
+				queue.append(e.obj)
+
+print(visited)
+
 
 
 
