@@ -10,6 +10,7 @@ This data structure contains 5 functions on the interface.
 ** take note that we only deal with the objects at the interface. We in no way touch the internal objects such as Vertex.
 """
 
+# extremely lightweight form of graph
 class DictGraph:
 	def __init__(self, directed=True):
 		self.graph = {}
@@ -45,15 +46,69 @@ class DictGraph:
 		else:
 			for e in E:
 				self.add_undirected_edge(e)
-		return self.graph
 
 	def get_set_of_children(self, obj):
 		assert obj in self.graph.keys(), "vertice is not in the set V"
 		return self.graph[obj]
 
-
-
 class Vertex:
+	def __init__(self):
+		self.set_of_children = set()
+
+	def get_set_of_children(self):
+		return self.set_of_children
+
+	def add_child(self, child):
+		self.set_of_children.add(child)
+
+class VertexGraph:
+	def __init__(self, directed = True):
+		self.V = set()
+		self.E = set()
+
+	def add_vertice(self, obj):
+		assert obj not in self.V, "vertice is already in Graph"
+		self.V.add(obj)
+
+	def add_directed_edge(self, edge):
+		assert edge not in E, "edge already in Graph"
+		from_obj, to_obj = edge
+		assert from_obj in V, "u of (u,v) not in V"
+		assert to_obj in V, "v of (u,v) not in V"
+		self.E.add(edge)
+		from_obj.add_child(to_object)
+
+	def add_undirected_edge(self, edge):
+		assert edge not in E, "edge already in Graph"
+		from_obj, to_obj = edge
+		assert from_obj in V, "u of (u,v) not in V"
+		assert to_obj in V, "v of (u,v) not in V"
+		self.E.add(edge)
+		from_obj.add_child(to_object)
+		to_obj.add_child(from_object)
+
+	def make_graph(self, V, E):
+		self.V = set()
+		self.E = set()
+		for v in V:
+			add_vertice(v)
+		if self.directed:
+			for e in E:
+				self.add_directed_edge(e)
+		else:
+			for e in E:
+				self.add_undirected_edge(e)
+
+	def get_set_of_children(self, obj):
+		assert obj in self.V, "vertice is not in the set V"
+		return obj.get_set_of_children()
+
+
+
+
+
+# not as light weight. Currenly can't think of any reason to use this.
+class Node:
 	def __init__(self, obj):
 		self.obj = obj
 		self.set_of_children = set()
@@ -71,14 +126,14 @@ class Vertex:
 	def add_child(self, obj):
 		self.set_of_children.add(obj)
 
-class ObjectGraph:
+class NodeGraph:
 	def __init__(self, directed=True):
 		self.V = {}
 		self.directed = directed
 
 	def add_vertice(self, obj):
 		assert obj not in self.V
-		v = Vertex(obj)
+		v = Node(obj)
 		self.V[v]=v
 
 	def add_directed_edge(self, edge):
@@ -104,7 +159,6 @@ class ObjectGraph:
 		else:
 			for e in E:
 				self.add_undirected_edge(e)
-		return self.V
 
 	def get_set_of_children(self, obj):
 		assert obj in self.V, "vertice is not in the set V"
@@ -114,7 +168,7 @@ class ObjectGraph:
 
 
 
-OG = ObjectGraph(True)
+OG = NodeGraph(True)
 OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3), (6,4), (3,5)])
 visited = set()
 
