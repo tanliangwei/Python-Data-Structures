@@ -55,22 +55,22 @@ def DFS(graph,
 				DFS(graph, v, check_terminate, pre_function, pos_function, visited, parent)
 		return parent
 
-
-OG = DictGraph(True)
-# a = Vertex()
-# b = Vertex() 
-# c = Vertex() 
-# d = Vertex() 
-# e = Vertex() 
-# f = Vertex() 
-a = 1
-b = 2
-c = 3
-d = 4
-e = 5
-f = 6 
-OG.make_graph([a, b, c, d, e, f], [(a, b), (a, c), (f, d), (c, e)])
-print(DFS(OG))
+if __name__ == "__main__":
+	OG = DictGraph(True)
+	# a = Vertex()
+	# b = Vertex() 
+	# c = Vertex() 
+	# d = Vertex() 
+	# e = Vertex() 
+	# f = Vertex() 
+	a = 1
+	b = 2
+	c = 3
+	d = 4
+	e = 5
+	f = 6 
+	OG.make_graph([a, b, c, d, e, f], [(a, b), (a, c), (f, d), (c, e)])
+	print(DFS(OG))
 
 
 
