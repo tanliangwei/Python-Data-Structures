@@ -65,33 +65,34 @@ class VertexGraph:
 	def __init__(self, directed = True):
 		self.V = set()
 		self.E = set()
+		self.directed = directed
 
 	def add_vertice(self, obj):
 		assert obj not in self.V, "vertice is already in Graph"
 		self.V.add(obj)
 
 	def add_directed_edge(self, edge):
-		assert edge not in E, "edge already in Graph"
+		assert edge not in self.E, "edge already in Graph"
 		from_obj, to_obj = edge
-		assert from_obj in V, "u of (u,v) not in V"
-		assert to_obj in V, "v of (u,v) not in V"
+		assert from_obj in self.V, "u of (u,v) not in V"
+		assert to_obj in self.V, "v of (u,v) not in V"
 		self.E.add(edge)
-		from_obj.add_child(to_object)
+		from_obj.add_child(to_obj)
 
 	def add_undirected_edge(self, edge):
-		assert edge not in E, "edge already in Graph"
+		assert edge not in self.E, "edge already in Graph"
 		from_obj, to_obj = edge
-		assert from_obj in V, "u of (u,v) not in V"
-		assert to_obj in V, "v of (u,v) not in V"
+		assert from_obj in self.V, "u of (u,v) not in V"
+		assert to_obj in self.V, "v of (u,v) not in V"
 		self.E.add(edge)
-		from_obj.add_child(to_object)
-		to_obj.add_child(from_object)
+		from_obj.add_child(to_obj)
+		to_obj.add_child(from_obj)
 
 	def make_graph(self, V, E):
 		self.V = set()
 		self.E = set()
 		for v in V:
-			add_vertice(v)
+			self.add_vertice(v)
 		if self.directed:
 			for e in E:
 				self.add_directed_edge(e)
@@ -102,6 +103,15 @@ class VertexGraph:
 	def get_set_of_children(self, obj):
 		assert obj in self.V, "vertice is not in the set V"
 		return obj.get_set_of_children()
+
+
+class IntVertex(Vertex):
+	def __init__(self, integer=0):
+		Vertex.__init__(self)
+		self.integer = integer
+
+	def __repr__(self):
+		return repr(self.integer)
 
 
 
@@ -168,20 +178,31 @@ class NodeGraph:
 
 
 
-OG = NodeGraph(True)
-OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3), (6,4), (3,5)])
-visited = set()
+if __name__ == "__main__":
+	OG = VertexGraph(True)
 
-queue = [1]
-while len(queue)>0:
-	current_obj = queue.pop()
-	if current_obj not in visited:
-		visited.add(current_obj)
-		for e in OG.get_set_of_children(current_obj):
-			if e not in visited:
-				queue.append(e)
+	a = IntVertex(1)
+	b = IntVertex(1) 
+	c = IntVertex(3) 
+	d = IntVertex(4) 
+	e = IntVertex(5) 
+	f = IntVertex(6) 
 
-print(visited)
+	print(a)
+
+	OG.make_graph([a, b, c, d, e, f], [(a, b), (a, c), (f, d), (c, e)])
+	visited = set()
+
+	queue = [a]
+	while len(queue)>0:
+		current_obj = queue.pop()
+		if current_obj not in visited:
+			visited.add(current_obj)
+			for e in OG.get_set_of_children(current_obj):
+				if e not in visited:
+					queue.append(e)
+
+	print(visited)
 
 
 
