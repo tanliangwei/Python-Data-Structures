@@ -78,14 +78,14 @@ class ObjectGraph:
 		from_object, to_object = edge
 		assert from_object in self.V, "u is not in the set V"
 		assert to_object in self.V, "v is not in the set V"
-		self.V[from_object].add_child(self.V[to_object])
+		self.V[from_object].add_child(to_object)
 
 	def add_undirected_edge(self, edge):
 		from_object, to_object = edge
 		assert from_object in self.V, "u is not in the set V"
 		assert to_object in self.V, "v is not in the set V"
-		self.V[from_object].add_child(self.V[to_object])
-		self.V[to_object].add_child(self.V[from_object])
+		self.V[from_object].add_child(to_object)
+		self.V[to_object].add_child(from_object)
 
 	def make_graph(self, V, E):
 		self.V = {}
@@ -105,7 +105,7 @@ class ObjectGraph:
 
 
 OG = ObjectGraph(True)
-OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3), (3,4), (3,6)])
+OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3), (6,4), (3,5)])
 visited = set()
 
 queue = [1]
@@ -115,7 +115,7 @@ while len(queue)>0:
 		visited.add(current_obj)
 		for e in OG.get_set_of_children(current_obj):
 			if e not in visited:
-				queue.append(e.obj)
+				queue.append(e)
 
 print(visited)
 
