@@ -51,6 +51,9 @@ class DictGraph:
 		assert obj in self.graph.keys(), "vertice is not in the set V"
 		return self.graph[obj]
 
+	def get_vertices(self):
+		return set(self.graph.keys())
+
 class Vertex:
 	def __init__(self):
 		self.set_of_children = set()
@@ -103,6 +106,9 @@ class VertexGraph:
 	def get_set_of_children(self, obj):
 		assert obj in self.V, "vertice is not in the set V"
 		return obj.get_set_of_children()
+
+	def get_vertices(self):
+		return self.V
 
 
 class IntVertex(Vertex):
@@ -173,6 +179,9 @@ class NodeGraph:
 	def get_set_of_children(self, obj):
 		assert obj in self.V, "vertice is not in the set V"
 		return self.V[obj].set_of_children
+
+	def get_vertices(self):
+		return set(self.V.keys())
 
 
 
