@@ -1,6 +1,6 @@
 """
 This module allows users to run BFS algorithms on 
-Graph structures created in the graph module in the same directory
+Graph structures created in the graph module in the parent directory
 """
 
 def default_check_function(v):
