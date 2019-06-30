@@ -16,7 +16,7 @@ class DictGraph:
 		self.graph = {}
 		self.directed = directed
 
-	def add_vertice(self, obj):
+	def add_vertex(self, obj):
 		assert obj not in self.graph.keys(), "vertice is already in key"
 		self.graph[obj] = set()
 
@@ -39,7 +39,7 @@ class DictGraph:
 	def make_graph(self, V, E):
 		self.graph = {}
 		for v in V:
-			self.add_vertice(v)
+			self.add_vertex(v)
 		if self.directed:
 			for e in E:
 				self.add_directed_edge(e)
@@ -51,7 +51,7 @@ class DictGraph:
 		assert obj in self.graph.keys(), "vertice is not in the set V"
 		return self.graph[obj]
 
-	def get_vertices(self):
+	def get_vertexes(self):
 		return set(self.graph.keys())
 
 class Vertex:
@@ -67,35 +67,32 @@ class Vertex:
 class VertexGraph:
 	def __init__(self, directed = True):
 		self.V = set()
-		self.E = set()
 		self.directed = directed
 
-	def add_vertice(self, obj):
+	def add_vertex(self, obj):
 		assert obj not in self.V, "vertice is already in Graph"
 		self.V.add(obj)
 
+	def __contains__(self, obj):
+		return obj in self.V
+
 	def add_directed_edge(self, edge):
-		assert edge not in self.E, "edge already in Graph"
 		from_obj, to_obj = edge
 		assert from_obj in self.V, "u of (u,v) not in V"
 		assert to_obj in self.V, "v of (u,v) not in V"
-		self.E.add(edge)
 		from_obj.add_child(to_obj)
 
 	def add_undirected_edge(self, edge):
-		assert edge not in self.E, "edge already in Graph"
 		from_obj, to_obj = edge
 		assert from_obj in self.V, "u of (u,v) not in V"
 		assert to_obj in self.V, "v of (u,v) not in V"
-		self.E.add(edge)
 		from_obj.add_child(to_obj)
 		to_obj.add_child(from_obj)
 
 	def make_graph(self, V, E):
 		self.V = set()
-		self.E = set()
 		for v in V:
-			self.add_vertice(v)
+			self.add_vertex(v)
 		if self.directed:
 			for e in E:
 				self.add_directed_edge(e)
@@ -107,7 +104,7 @@ class VertexGraph:
 		assert obj in self.V, "vertice is not in the set V"
 		return obj.get_set_of_children()
 
-	def get_vertices(self):
+	def get_vertexes(self):
 		return self.V
 
 
@@ -124,64 +121,64 @@ class IntVertex(Vertex):
 
 
 # not as light weight. Currenly can't think of any reason to use this.
-class Node:
-	def __init__(self, obj):
-		self.obj = obj
-		self.set_of_children = set()
+# class Node:
+# 	def __init__(self, obj):
+# 		self.obj = obj
+# 		self.set_of_children = set()
 
-	# so that when u compare two vertex with the same object, 
-	# it will return true.
-	def __eq__(self, other):
-		return self.obj == other
+# 	# so that when u compare two vertex with the same object, 
+# 	# it will return true.
+# 	def __eq__(self, other):
+# 		return self.obj == other
 
-	# so that it will use the obj when hashing in the value
-	def __hash__(self):
-	    # :nodoc: Delegate comparison to keys.
-	    return hash(self.obj)
+# 	# so that it will use the obj when hashing in the value
+# 	def __hash__(self):
+# 	    # :nodoc: Delegate comparison to keys.
+# 	    return hash(self.obj)
 
-	def add_child(self, obj):
-		self.set_of_children.add(obj)
+# 	def add_child(self, obj):
+# 		self.set_of_children.add(obj)
 
-class NodeGraph:
-	def __init__(self, directed=True):
-		self.V = {}
-		self.directed = directed
+# class NodeGraph:
+# 	def __init__(self, directed=True):
+# 		self.V = {}
+# 		self.directed = directed
 
-	def add_vertice(self, obj):
-		assert obj not in self.V
-		v = Node(obj)
-		self.V[v]=v
+# 	def add_vertex(self, obj):
+# 		assert obj not in self.V
+# 		v = Node(obj)
+# 		self.V[v]=v
 
-	def add_directed_edge(self, edge):
-		from_object, to_object = edge
-		assert from_object in self.V, "u is not in the set V"
-		assert to_object in self.V, "v is not in the set V"
-		self.V[from_object].add_child(to_object)
+# 	def add_directed_edge(self, edge):
+# 		from_object, to_object = edge
+# 		assert from_object in self.V, "u is not in the set V"
+# 		assert to_object in self.V, "v is not in the set V"
+# 		self.V[from_object].add_child(to_object)
 
-	def add_undirected_edge(self, edge):
-		from_object, to_object = edge
-		assert from_object in self.V, "u is not in the set V"
-		assert to_object in self.V, "v is not in the set V"
-		self.V[from_object].add_child(to_object)
-		self.V[to_object].add_child(from_object)
+# 	def add_undirected_edge(self, edge):
+# 		from_object, to_object = edge
+# 		assert from_object in self.V, "u is not in the set V"
+# 		assert to_object in self.V, "v is not in the set V"
+# 		self.V[from_object].add_child(to_object)
+# 		self.V[to_object].add_child(from_object)
 
-	def make_graph(self, V, E):
-		self.V = {}
-		for v in V:
-			self.add_vertice(v)
-		if self.directed:
-			for e in E:
-				self.add_directed_edge(e)
-		else:
-			for e in E:
-				self.add_undirected_edge(e)
+# 	def make_graph(self, V, E):
+# 		self.V = {}
+# 		for v in V:
+# 			self.add_vertex(v)
+# 		if self.directed:
+# 			for e in E:
+# 				self.add_directed_edge(e)
+# 		else:
+# 			for e in E:
+# 				self.add_undirected_edge(e)
 
-	def get_set_of_children(self, obj):
-		assert obj in self.V, "vertice is not in the set V"
-		return self.V[obj].set_of_children
+# 	def get_set_of_children(self, obj):
+# 		assert obj in self.V, "vertice is not in the set V"
+# 		return self.V[obj].set_of_children
 
-	def get_vertices(self):
-		return set(self.V.keys())
+# 	def get_vertexes(self):
+# 		return set(self.V.keys())
 
 
 
