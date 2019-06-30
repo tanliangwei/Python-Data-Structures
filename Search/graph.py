@@ -32,7 +32,7 @@ class DictGraph:
 		self.graph = {}
 		for v in V:
 			self.add_vertice(v)
-		if directed:
+		if self.directed:
 			for e in E:
 				self.add_directed_edge(e)
 		else:
@@ -65,65 +65,48 @@ class Vertex:
 		self.set_of_children.add(obj)
 
 class ObjectGraph:
-	def __init__(self):
-		self.V = set()
+	def __init__(self, directed=True):
+		self.V = {}
+		self.directed = directed
 
 	def add_vertice(self, obj):
 		assert obj not in self.V
-		self.V.add(v)
+		v = Vertex(obj)
+		self.V[v]=v
 
 	def add_directed_edge(self, edge):
 		from_object, to_object = edge
-		assert from_object in self.graph.keys(), "u is not in the set V"
-		assert to_object in self.graph.keys(), "v is not in the set V"
-		self.graph[from_object].add(to_object)
+		assert from_object in self.V, "u is not in the set V"
+		assert to_object in self.V, "v is not in the set V"
+		self.V[from_object].add_child(self.V[to_object])
 
 	def add_undirected_edge(self, edge):
 		from_object, to_object = edge
-		assert from_object in self.graph.keys(), "u is not in the set V"
-		assert to_object in self.graph.keys(), "v is not in the set V"
-		self.graph[from_object].add(to_object)
-		self.graph[to_object].add(from_object)
+		assert from_object in self.V, "u is not in the set V"
+		assert to_object in self.V, "v is not in the set V"
+		self.V[from_object].add_child(self.V[to_object])
+		self.V[to_object].add_child(self.V[from_object])
 
 	def make_graph(self, V, E):
-		self.graph = {}
+		self.V = {}
 		for v in V:
 			self.add_vertice(v)
-		if directed:
+		if self.directed:
 			for e in E:
 				self.add_directed_edge(e)
 		else:
 			for e in E:
 				self.add_undirected_edge(e)
-		return self.graph
+		return self.V
 
 	def get_set_of_children(self, obj):
-		assert obj in self.graph.keys(), "vertice is not in the set V"
-		return self.graph[obj]
+		assert obj in self.V, "vertice is not in the set V"
+		return self.V[obj].set_of_children
 
 
-
-s = set()
-a = Vertex(3)
-b = Vertex(2)
-c = Vertex(3)
-d = Vertex(4)
-e = Vertex(10)
-
-s.add(a)
-s.add(b)
-s.add(c)
-s.add(d)
-s.add(5)
-print(s)
-
-print(a)
-print(b)
-print(c)
-print(d)
-
-print(5 in s)
-print(e in s)
+OG = ObjectGraph(True)
+OG.make_graph([1,2,3,4,5,6], [(1,2), (1,3)])
+print(OG.get_set_of_children(1))
 
 
 
