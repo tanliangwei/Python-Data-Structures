@@ -16,10 +16,10 @@ Sorting is a process in which a sequence of objects are arranged in order. The w
 # Sort Documentation
 
 ## Count Sort 
-`countsort` takes in an list of integers and sorts it. If you wish to sort a list of objects **via a certain integer attribute**, you will need to supply a `key_function`. To keep things simple, there are only 3 parameters in which you can supply. 
+`countsort` takes in an list of integers and sorts it. If you wish to sort a list of objects **via a certain integer attribute**, you will need to supply a `key_function`. To keep things simple, there are only 3 input parameters. 
 
 1. `arr` - A list of the **objects/integers** which is to be sorted.
-2. `reverse` - `False` (ascending) by default. Determines the order of sorting. (*optional*) 
+2. `reverse` - `False` by default. Determines the order of sorting. (*optional*) 
 3. `key_function` - A function object for computing the key of the object supplied. Used when sorting objects. See below for example. (*optional*)
 
 **Basic use case:** 
@@ -61,10 +61,11 @@ countsort(list_of_number, key_function=key_function) # list_of_people will be so
 ```
 
 ## Radix Sort
-`radixsort` takes in an list of positive integers and sorts it. If you wish to sort a list of objects **via a certain positive integer attribute**, you will need to supply a `key_function`.
+`radixsort` takes in an list of positive integers and sorts it. If you wish to sort a list of objects **via a certain positive integer attribute**, you will need to supply a `key_function`. To keep things simple, there are only 3 input parameters. 
+
 
 1. `arr` - A list of the **objects/integers** which is to be sorted.
-2. `reverse` - `False` (ascending) by default. Determines the order of sorting. (*optional*) 
+2. `reverse` - `False` by default. Determines the order of sorting. (*optional*) 
 3. `key_function` - A function object for computing the key of the object supplied. Used when sorting objects. See below for example. (*optional*)
 
 **Basic use case:**
