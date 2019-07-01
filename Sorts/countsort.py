@@ -2,16 +2,14 @@
 # array will be the integer array to be sorted and range will be a 2-tuple with the 
 # upper and lower bound of the range. Inclusive range.
 
-def default_key(number):
-	return number
+def default_key(obj):
+	return obj
 
-
-def countsort(arr, integer_range=None, reverse=False, key_function=default_key):
+def countsort(arr, reverse=False, key_function=default_key):
 	if arr is None:
 		return None
 	m = list(map(key_function, arr))
-	if integer_range is None:
-		integer_range = (min(m), max(m))
+	integer_range = (min(m), max(m))
 	lower_bound, upper_bound = integer_range
 	m = upper_bound - lower_bound + 1
 	sort_array = []
@@ -25,6 +23,8 @@ def countsort(arr, integer_range=None, reverse=False, key_function=default_key):
 		for element in num_list:
 			arr[index] = element
 			index += 1
+	if reverse:
+		arr.reverse()
 	return arr
 
 def countsort_int(arr, integer_range=None):
@@ -46,7 +46,6 @@ def countsort_int(arr, integer_range=None):
 			index+=1
 	return arr
 
-
 if __name__ == "__main__":
 	import random
 	import cProfile
@@ -67,12 +66,12 @@ if __name__ == "__main__":
 
 
 
-	integer_range = (1, 1000)
-	unsorted_array = random_int_list_generator(10, integer_range)
-	unsorted_array_2 = unsorted_array.copy()
-	print(unsorted_array)
-	countsort(unsorted_array_2, key_function=first_digit)
-	print(unsorted_array_2)
+	# integer_range = (1, 1000)
+	# unsorted_array = random_int_list_generator(10, integer_range)
+	# unsorted_array_2 = unsorted_array.copy()
+	# print(unsorted_array)
+	# countsort(unsorted_array_2, key_function=first_digit)
+	# print(unsorted_array_2)
 	# python_sort(unsorted_array)
 	# for i in range(0,len(unsorted_array_2)):
 	# 	assert unsorted_array_2[i] == unsorted_array[i]

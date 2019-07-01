@@ -12,7 +12,7 @@ def radixsort(arr, base=None, reverse=False, key_function=default_key):
 		return None
 	m = list(map(key_function, arr))
 	if base is None:
-		base = 10
+		base = len(arr)
 	max_number_of_digits = get_number_of_digits(max(m), base)
 	for i in range(0, max_number_of_digits):
 		countsort(arr, integer_range=(0, base-1), key_function=key_function_generator(i+1, base, key_function))
