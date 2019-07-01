@@ -1,2 +1,3 @@
-# python_datastructures
-Bobby's implementation of basic Python data structures
+# Sorting
+Sorting is a process in which a sequence of objects are arranged in order. The way the objects are sorted are determined by **comparator functions**. Intuitively, **comparator functions** contain instructions for determining if an object is *larger than*, *smaller than* or *equal* to the object it is being compared to. The input to a **Sort Function** is an unsorted sequence of objects. The output of a **Sort Function** is a sorted sequence of the objects supplied. Default comparator functions already exist for all primitive objects like `int` , `str` ,`float` and more and will be used if another comparator function is not supplied. 
+

@@ -2,6 +2,8 @@
 This module allows users to run BFS algorithms on 
 Graph structures created in the graph module in the parent directory
 """
+import sys
+sys.path.append("/Users/tanliangwei/Desktop/Summer 2019/Algorithms 1/python_datastructures/Graph")
 
 def default_check_function(v):
 	return False
@@ -33,8 +35,6 @@ def BFS(graph, root, check_terminate = default_check_function):
 	return parent, level
 
 if __name__ == "__main__":
-	import sys
-	sys.path.append("/Users/tanliangwei/Desktop/Summer 2019/Algorithms 1/python_datastructures/Search")
 	print(sys.path)
 	from graph import VertexGraph, DictGraph, Vertex
 
