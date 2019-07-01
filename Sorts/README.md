@@ -102,3 +102,12 @@ def key_function(people):
 list_of_people = [p1, p2, p3, p4, p5, p6] # list of people objects
 radixsort(list_of_number, key_function=key_function) # list_of_people will be sorted based on their ids.
 ```
+
+# Some Discussion 
+Some discussion between different sorts.
+## Count Sort VS Radix Sort
+In general, it is prefable to use `countsort` since it is a more general Integer Sorting Algorithm (can sort both positive and negative integers). However, if we are sure that the input consist of only positive integers, `radixsort` is more desirable. This is even more so if the range is very big as compared to the number of integers to be sorted.
+
+
+
+
