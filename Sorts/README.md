@@ -35,7 +35,8 @@ countsort(list_of_number, reverse=True) # list_of_number will be [11, 9, 7, 6, 5
 To sort objects defined by us:
 
 ```python
-# a certain object which we wish to sort via a single integer attribute
+# a certain object which we wish to sort via a single integer attribute.
+# in this case, a person's id.
 class people:
 	def __init__(self, name, id):
 		self.name=name
