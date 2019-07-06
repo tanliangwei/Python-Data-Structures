@@ -11,7 +11,7 @@ This data structure contains 5 functions on the interface.
 """
 
 # extremely lightweight form of graph
-class DictGraph:
+class Graph:
 	def __init__(self, directed=True):
 		self.graph = {}
 		self.directed = directed
