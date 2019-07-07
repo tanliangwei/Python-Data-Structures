@@ -31,7 +31,7 @@ class WeightedGraph(Graph):
 	def add_undirected_edge(self, weighted_edge):
 		edge, weight = weighted_edge
 		Graph.add_undirected_edge(self, edge)
-		assert edge in self.W.keys(), "edge already in W"
+		assert edge not in self.W.keys(), "edge already in W"
 		self.W[edge] = weight
 		reverse_edge = (edge[1], edge[0])
 		assert reverse_edge not in self.W.keys(), " reverse edge already in W"
