@@ -31,4 +31,25 @@ def bellman_ford(weighted_graph, source):
 			pq.update({v: dist[v]})
 
 	for i in range(0, len(weighted_graph.get_vertexes())-1):
-		for
+		for e in weighted_graph.get_edges():
+			relax(e)
+
+	for e in weighted_graph.get_edges():
+		u, v = e
+		if dist[v] > dist[u] + weighted_graph.W[e]:
+			print("negative cycle detected")
+			return
+
+	print(dist)
+
+
+if __name__ == "__main__":
+	print("====== Testing Weighted Graph =========")
+	WG = WeightedGraph(directed = True)
+
+	Vertices = ["a","b", "c", "d", "e"]
+	Edges = [(("a", "b"), 19), (("b", "c"), 11), (("b", "d"), 4), (("d", "c"), 15), (("d", "e"), 13), (("c", "e"), 5), (("c", "a"), -31)]
+	WG.make_graph(Vertices, Edges)
+	# print(WG.W)
+	bellman_ford(WG, "a")
+
