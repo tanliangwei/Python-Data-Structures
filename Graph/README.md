@@ -1,7 +1,7 @@
 # Graphs
 Graphs are data structures which maintains a set of Vertexes (**V**) and a set of Edges(**E**). Vertex are nodes in the graph, each containing information for modelling the user's application. The edges tells us how the vertex are connected to one another. There are several ways of representing this information. In this package, two ways will be introduced. 
 
-1. DictGraph - A graph built using a **Hashtable**, otherwise known as Dictionary in python.
+1. Graph - A graph built using a **Hashtable**, otherwise known as Dictionary in python.
 2. VertexGraph - An **object oriented** graph built using a Vertex datastructure and sets **V** and **E**.
 
 # Graph Operations Summary
@@ -21,7 +21,7 @@ The table belows shows the operations of the Graph. This is applicable to both t
 ## The Vertex Graph Structure
 The `VertexGraph` is build using a `Vertex` data structure and the `VertexGraph` graph datatype. All the vertexes added into the `VertexGraph` must be of the `Vertex` datas structure. To use `VertexGraph`, users will have to import the `Vertex` data structure and specialize (inherit from) it to suit their needs.
 
-***The `VertexGraph` might be chosen over the `DictGraph` in the scenario when the use case involves many different states which the users intend to model with vertexes. In such a case, it might be better to generate the children in dynamically instead of loading the whole graph into memory.***
+***The `VertexGraph` might be chosen over the `Graph` in the scenario when the use case involves many different states which the users intend to model with vertexes. In such a case, it might be better to generate the children in dynamically instead of loading the whole graph into memory.***
 
 When inheriting from the `Vertex` data structure, it is **not** necessary to override any of the functions. One can just add in attributes or methods to suit their needs. ***However, to model the above mentioned use case, you will need to override either the `get_set_of_children()` or the `add_child(vertex)` method or both.*** The points below describe the interface of the two methods mentioned.
 
