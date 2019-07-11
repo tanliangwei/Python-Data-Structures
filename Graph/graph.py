@@ -1,11 +1,14 @@
 """
-This module contains the Graph class
-Users can use this class to make Graphs
-This data structure contains 5 functions on the interface.
-1. Add vertice - Basically adding a vertice into the graph
-2 & 3. Add directed/undirected edge - adding edges into graph
-4. Make graph - makes a graph give 2 sets, V and E
-5. get set of children - getting a set of children for the object specified
+Users can use this module to implement the Graphs with their objects of choice. 
+This data structure contains  functions on the interface.
+
+1. __init__ Initialization of Graph.
+2. add_vertex - Basically adding a vertice into the graph
+3 & 4. Add_directed/undirected_edge - adding edges into graph
+5. make_graph - makes a graph give 2 sets, V and E
+6. get_set_of_children - getting a set of children for the object specified
+7. get_vertexes - get all the vertex in the graph
+8. get_edges - get a set of all edges in the graph.
 
 ** take note that we only deal with the objects at the interface. We in no way touch the internal objects such as Vertex.
 """
@@ -117,6 +120,14 @@ class VertexGraph:
 	def get_vertexes(self):
 		return self.V
 
+	def get_edges(self):
+		set_of_edges = set()
+		for v in self.V:
+			for e in self.get_set_of_children(V):
+				set_of_edges.add((v, e))
+		return set_of_edges
+
+
 
 class IntVertex(Vertex):
 	def __init__(self, integer=0):
@@ -125,6 +136,33 @@ class IntVertex(Vertex):
 
 	def __repr__(self):
 		return repr(self.integer)
+
+if __name__ == "__main__":
+	print("============= Graph Test =================")
+	OG = VertexGraph(True)
+
+	a = IntVertex(1)
+	b = IntVertex(1) 
+	c = IntVertex(3) 
+	d = IntVertex(4) 
+	e = IntVertex(5) 
+	f = IntVertex(6) 
+
+	OG.make_graph([a, b, c, d, e, f], [(a, b), (a, c), (f, d), (c, e)])
+	visited = set()
+
+	queue = [a]
+	while len(queue)>0:
+		current_obj = queue.pop()
+		if current_obj not in visited:
+			visited.add(current_obj)
+			for e in OG.get_set_of_children(current_obj):
+				if e not in visited:
+					queue.append(e)
+
+	print(visited)
+
+
 
 
 
@@ -189,33 +227,6 @@ class IntVertex(Vertex):
 
 # 	def get_vertexes(self):
 # 		return set(self.V.keys())
-
-
-if __name__ == "__main__":
-	OG = VertexGraph(True)
-
-	a = IntVertex(1)
-	b = IntVertex(1) 
-	c = IntVertex(3) 
-	d = IntVertex(4) 
-	e = IntVertex(5) 
-	f = IntVertex(6) 
-
-	print(a)
-
-	OG.make_graph([a, b, c, d, e, f], [(a, b), (a, c), (f, d), (c, e)])
-	visited = set()
-
-	queue = [a]
-	while len(queue)>0:
-		current_obj = queue.pop()
-		if current_obj not in visited:
-			visited.add(current_obj)
-			for e in OG.get_set_of_children(current_obj):
-				if e not in visited:
-					queue.append(e)
-
-	print(visited)
 
 
 
