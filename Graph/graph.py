@@ -56,8 +56,9 @@ class Graph:
 
 	def get_edges(self):
 		set_of_edges = set()
-		for i in self.graph.values():
-			set_of_edges.update(i)
+		for key, value in self.graph.items():
+			for e in value:
+				set_of_edges.add((key,e))
 		return set_of_edges
 
 

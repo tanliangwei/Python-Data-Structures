@@ -4,7 +4,7 @@ Graph structures created in the graph module in the parent directory
 """
 import sys
 sys.path.append("/Users/tanliangwei/Desktop/Summer 2019/Algorithms 1/python_datastructures/Graph")
-from graph import DictGraph, Vertex
+from graph import Graph, Vertex
 
 def default_check_function(v):
 	return False
