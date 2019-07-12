@@ -1,11 +1,12 @@
 import sys
 sys.path.append("/Users/tanliangwei/Desktop/Summer 2019/Algorithms 1/python_datastructures/Graph")
-from bfs import BFS
+from dfs import DFS, check_cycle
 from graph import Graph, VertexGraph, Vertex
 
 V = {"Singapore", "Tokyo", "Shanghai", "Kualar Lumpur", "Hong Kong", "Seoul", 
 	"Mumbai", "London", "Paris", "San Francisco", "Iceland", "New York",
 	"Boston"}
+
 
 E = {("Singapore", "Tokyo"), ("Singapore", "Shanghai"), ("Tokyo", "Shanghai"), ("Singapore", "Kualar Lumpur"),
 	("Singapore", "Mumbai"), ("Kualar Lumpur", "Hong Kong"), ("Hong Kong", "San Francisco"), ("Tokyo", "Kualar Lumpur"),
@@ -41,16 +42,13 @@ def create_graphs(V, E):
 	vertex_graph.make_graph(set_of_country, set_of_edge)
 	return graph, vertex_graph
 
-def shortest_path(source, target, graph):
+def find_path(source, target, graph):
 	def target_check(u, v):
 		return v==target
-	parent, level = BFS(graph = graph, root = source, check_terminate = target_check)
+	parent = DFS(graph = graph, root = source, check_terminate = target_check)
 	print("Parent: ", parent)
-	print("Level: ",level)
 	path = [target]
 	cur_country = target
-	if parent.get(cur_country) is None:
-		return []
 	while parent[cur_country] is not None:
 		parent_country = parent[cur_country]
 		path.append(parent_country)
@@ -58,16 +56,15 @@ def shortest_path(source, target, graph):
 	path.reverse()
 	return path
 
-def test_bfs(graph1, graph2, source, target):
-	path_1 = shortest_path(source, target, graph1) 
-	path_2 = shortest_path(country_dict[source], country_dict[target], graph2)
-	print(path_1, len(path_1))
-	print(path_2, len(path_2))
+def test_dfs(graph1, graph2, source, target):
+	path_1 = find_path(source, target, graph1) 
+	path_2 = find_path(country_dict[source], country_dict[target], graph2)
 
 
 
 graph, vertex_graph = create_graphs(V, E)
-test_bfs(graph, vertex_graph, "Iceland", "Singapore")
+# test_dfs(graph, vertex_graph, "Singapore", "Iceland")
+print(check_cycle(graph))
 
 
 
