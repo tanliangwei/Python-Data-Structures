@@ -27,7 +27,7 @@ To maintain simplicity when using this module, the interface and methods of all 
 ## The (Weighted) Vertex Graph Structure
 The `(Weighted)VertexGraph` is build using a `(Weighted)Vertex` data structure and the `(Weighted)VertexGraph` graph datatype. All the vertexes added into the `(Weighted)VertexGraph` must be of the `(Weighted)Vertex` datas structure. To use `(Weighted)VertexGraph`, users will have to import the `(Weighted)Vertex` data structure and specialize (inherit from) it to suit their needs.
 
-***The `(Weighted)VertexGraph` might be chosen over the `Graph` in the scenario when the use case involves many different states which the users intend to model with vertexes. In such a case, it might be better to generate the children in dynamically instead of loading the whole graph into memory.***
+>The `(Weighted)VertexGraph` might be chosen over the `Graph` in the scenario when the use case involves many different states which the users intend to model with vertexes. In such a case, it might be better to generate the children in dynamically instead of loading the whole graph into memory.
 
 When inheriting from the `(Weighted)Vertex` data structure, it is **not** necessary to override any of the functions. One can just add in attributes or methods to suit their needs. ***However, to model the above mentioned use case, you will need to override either the `get_set_of_children()` or the `add_child(vertex)` method or both.*** The points below describe the interface of the two methods mentioned.
 
