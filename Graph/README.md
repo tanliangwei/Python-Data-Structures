@@ -19,8 +19,8 @@ To maintain simplicity when using this module, the interface and methods of all 
 `add_undirected_edge(edge)`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Inserts the specified edge into the Graph as a **undirected** edge. Throws an error if the vertices in the edge is not in the graph.
 `make_graph(V, E)`|![equation](https://latex.codecogs.com/png.latex?O%28%7CV%7C&plus;%7CE%7C%29)|Constructs the graph with the given sets of Vertexes **V** and Edges **E**.
 `get_set_of_children(vertex)`|![equation](https://latex.codecogs.com/png.latex?O%281%29)|Returns the set of children of the specified vertex. Throws an error if the vertex is not in the graph. 
-`get_vertexes()`|![equation](https://latex.codecogs.com/gif.latex?O(|V|))|Returns the set of vertex **V**.
-`get_edges()`|![equation](https://latex.codecogs.com/gif.latex?O(|E| + |V|))|Returns the set of edges **E**.
+`get_vertexes()`|![equation](https://latex.codecogs.com/gif.latex?O%28%7CV%7C%29)|Returns the set of vertex **V**.
+`get_edges()`|![equation](https://latex.codecogs.com/gif.latex?O%28%7CV%7C&plus;%7CE%7C%29)|Returns the set of edges **E**.
 
 
 
