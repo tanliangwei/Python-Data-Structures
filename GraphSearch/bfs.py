@@ -8,11 +8,11 @@ sys.path.append("/Users/tanliangwei/Desktop/Summer 2019/Algorithms 1/python_data
 def default_check_function(u, v):
 	return False
 
-def BFS(graph, root, check_terminate = default_check_function):
-	level = {root: 0}
-	parent = {root: None}
+def BFS(graph, source, check_terminate = default_check_function):
+	level = {source: 0}
+	parent = {source: None}
 	i = 1
-	frontier = {root}
+	frontier = {source}
 	terminate = False
 	while len(frontier) > 0:
 		next_set = set()
