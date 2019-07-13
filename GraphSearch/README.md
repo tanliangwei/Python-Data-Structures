@@ -37,7 +37,7 @@ Most markdown syntaxes work inside block quotes.
 ### Example
 ~~~python
 """
-An example application to find the shortest path from New York to California
+An example application to find the shortest path from California to New York
 """
 
 # bfs will terminate once we find "California"
