@@ -60,6 +60,13 @@ The time complexity of BFS is <math><mo>O(|V|+|E|)</mo></math> which is also equ
 ### Space Complexity
 On top of the space required for the graph, BFS further requires  <math display="block"><mo>O</mo><mo>(</mo><msup><mi>b</mi><mi>d</mi></msup><mo>)</mo></math> or <math><mo>O(|V|)</mo></math> in the worst case which is the space required to store all the vertexes at one layer.
 
+<math display="block">
+    <msubsup><mi>A</mi> <mi>S</mi> <mi>T</mi></msubsup>
+    <mo>=</mo>
+    <mi>B</mi>
+</math>
+
+
 #### Questions
 
 1. Should we include a BFS which takes in no source and will run through the entire graph? Is it meaningful?
