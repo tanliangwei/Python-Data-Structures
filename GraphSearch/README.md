@@ -60,6 +60,10 @@ The time complexity of BFS is \\(O(|V|+|E|) \\) which is also equal to \\(O(b^d)
 ### Space Complexity
 On top of the space required for the graph, BFS further requires \\(O(b^d) \\) or \\(O(|V|) \\) in the worst case which is the space required to store all the vertexes at one layer.
 
+#### Questions
 
+1. Should we include a BFS which takes in no source and will run through the entire graph? Is it meaningful?
+
+## Depth First Search
 
 
