@@ -58,7 +58,7 @@ parent, level = bfs(graph, "New York", check_terminate)
 The time complexity of BFS is <math><mo>O(|V|+|E|)</mo></math> which is also equal to <math><mo>O</mo><mo>(</mo><msup><mi>b</mi><mi>d</mi></msup><mo>)</mo></math> where b is the branching factor and d is the depth of the graph.
 
 ### Space Complexity
-On top of the space required for the graph, BFS further requires  <math><mo>O</mo><mo>(</mo><msup><mi>b</mi><mi>d</mi></msup><mo>)</mo></math> or <math><mo>O(|V|)</mo></math> in the worst case which is the space required to store all the vertexes at one layer.
+On top of the space required for the graph, BFS further requires  <math display="block"><mo>O</mo><mo>(</mo><msup><mi>b</mi><mi>d</mi></msup><mo>)</mo></math> or <math><mo>O(|V|)</mo></math> in the worst case which is the space required to store all the vertexes at one layer.
 
 #### Questions
 
