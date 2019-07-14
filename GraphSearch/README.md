@@ -66,7 +66,6 @@ On top of the space required for the graph, BFS further requires:
 
 ![equation](https://latex.codecogs.com/gif.latex?O%28b%5E%7Bd%7D%29%20%3D%20O%28%7CV%7C%29) 
 
-
 in the worst case which is the space required to store all the vertexes at one layer.
 
 #### Questions
@@ -74,5 +73,6 @@ in the worst case which is the space required to store all the vertexes at one l
 1. Should we include a BFS which takes in no source and will run through the entire graph? Is it meaningful?
 
 ## Depth First Search
+
 
 
