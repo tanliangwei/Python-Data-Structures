@@ -79,10 +79,14 @@ def dfs_util(graph, source, parent,
 
 def check_cycle(graph):
 	def cycle_terminate_function(u, v, list_of_child, visit_stack, parent):
-		for visiting in visit_stack:
-			if visiting[-1] == v:
-				print("cycle detected")
-				return True
+		for i in range(0, len(visit_stack)):
+			if visit_stack[i][-1] == v:
+				cycle = ""
+				for j in range(i, len(visit_stack)):
+					cycle += (str(visit_stack[j][-1]) + " -> ")
+				cycle+=str(v)
+				print("cycle detected: ", cycle)
+				return False
 	parent, terminate = dfs(graph, terminate_function = cycle_terminate_function)
 
 	return parent, terminate
@@ -126,7 +130,7 @@ def check_cycle_1(graph, vertex, visited = None, visit_stack=None):
 
 if __name__ == "__main__":
 	G = Graph(True)
-	G.make_graph([1, 2, 3, 4, 5, 6, 7, 8, 9], [(1, 2), (1, 3), (2, 4), (2, 5), (3,6), (3,7), (5,8), (5,9), (1, 9)])
+	G.make_graph([1, 2, 3, 4, 5, 6, 7, 8, 9], [(1, 2), (1, 3), (2, 4), (2, 5), (3,6), (3,7), (5,8), (5,9), (9, 1), (8, 2), (9, 2), (9, 9)])
 	print(check_cycle(G))
 
 
